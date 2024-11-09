@@ -7,6 +7,8 @@ const useTelegram = () => {
   const theme = useSelector((state) => state.user.theme);
 
   const init = useCallback(() => {
+    tg.enableClosingConfirmation();
+
     const isDark = theme === 'dark';
 
     tg.setHeaderColor(isDark ? '#1C1C1E' : '#FFFFFF');
