@@ -1,5 +1,6 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
+import { SnackbarProvider } from 'notistack';
 import App from './App.tsx';
 import { BrowserRouter } from 'react-router-dom';
 import '@/assets/styles/tailwind.css';
@@ -14,9 +15,11 @@ window.Telegram.WebApp.expand();
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Provider store={store}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <SnackbarProvider anchorOrigin={{ horizontal: 'center', vertical: 'top' }}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </SnackbarProvider>
     </Provider>
   </StrictMode>,
 );

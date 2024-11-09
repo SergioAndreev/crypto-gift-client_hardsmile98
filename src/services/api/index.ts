@@ -49,6 +49,7 @@ export const publicApi = createApi({
     getOrdersReceived: builder.query<endpoints.GetOrdersReceivedResponse, { id: string }>(
       endpoints.getOrdersReceived,
     ),
+    buyGift: builder.mutation<endpoints.BuyGiftResponse, { id: string }>(endpoints.buyGift),
   }),
 
   tagTypes: Object.values(tagTypes),
@@ -66,6 +67,7 @@ export const {
   useGetLeaderboardQuery,
   useGetProfileQuery,
   useGetOrdersReceivedQuery,
+  useBuyGiftMutation,
 } = publicApi;
 
 export * from './endpoints';

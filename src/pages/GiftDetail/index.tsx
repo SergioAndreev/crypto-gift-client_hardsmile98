@@ -1,13 +1,19 @@
 import { useBackButton, useTelegram } from '@/hooks';
 import Detail from './Detail';
 import GiftHistory from './GiftHistory';
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useGetGiftHistoryQuery, useGetGiftQuery } from '@/services';
+import {
+  isErrorWithMessage,
+  useBuyGiftMutation,
+  useGetGiftHistoryQuery,
+  useGetGiftQuery,
+} from '@/services';
 import { useTranslation } from 'react-i18next';
 import { ErrorPage } from '@/components';
 import DetailSkeleton from './DetailSkeleton';
 import GiftHistorySkeleton from './GiftHistorySkeleton';
+import { useSnackbar } from 'notistack';
 
 function Gift() {
   useBackButton();
@@ -37,14 +43,57 @@ function Gift() {
 
   const { tg } = useTelegram();
 
+  const { enqueueSnackbar } = useSnackbar();
+
+  const [
+    buyGift,
+    {
+      data: buyGiftData,
+      isLoading: isBuyGiftLoading,
+      isSuccess: isBuyGiftSuccess,
+      isError: isBuyGiftError,
+      error: buyGiftError,
+    },
+  ] = useBuyGiftMutation();
+
+  const miniAppPayUrl = buyGiftData?.data?.miniAppPayUrl;
+
+  useEffect(() => {
+    if (isBuyGiftError && isErrorWithMessage(buyGiftError)) {
+      enqueueSnackbar(buyGiftError.data.message, { variant: 'error' });
+    }
+  }, [enqueueSnackbar, isBuyGiftError, buyGiftError]);
+
+  useEffect(() => {
+    if (isBuyGiftLoading) {
+      tg.MainButton.showProgress();
+    }
+  }, [tg, isBuyGiftLoading]);
+
+  useEffect(() => {
+    if (isBuyGiftError || isBuyGiftSuccess) {
+      tg.MainButton.hideProgress();
+    }
+  }, [tg, isBuyGiftSuccess, isBuyGiftError]);
+
+  useEffect(() => {
+    if (isBuyGiftSuccess && miniAppPayUrl) {
+      tg.openTelegramLink(miniAppPayUrl);
+    }
+  }, [tg, isBuyGiftSuccess, miniAppPayUrl]);
+
+  const buyGiftCb = useCallback(() => buyGift({ id }), [buyGift, id]);
+
   useEffect(() => {
     tg.MainButton.text = t('gift.buyGift');
+    tg.MainButton.onClick(buyGiftCb);
     tg.MainButton.show();
 
     return () => {
+      tg.MainButton.offClick(buyGiftCb);
       tg.MainButton.hide();
     };
-  }, [t, tg]);
+  }, [buyGiftCb, t, tg]);
 
   useEffect(() => {
     if (isCanBuy) {
@@ -57,7 +106,7 @@ function Gift() {
   const isError = isGiftError || isGiftHistoryError;
   const error = giftError || giftErroriftHistoryError;
 
-  if (isError) {
+  if (isError || id === '') {
     return <ErrorPage error={error} />;
   }
 
