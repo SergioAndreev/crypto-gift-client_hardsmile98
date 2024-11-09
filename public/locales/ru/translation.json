@@ -1,0 +1,100 @@
+{
+    "error": {
+        "title": "Произошла ошибка",
+        "unknowError": "Неизвестная ошибка"
+    },
+    "menu": {
+        "store": "Магазин",
+        "gifts": "Подарки",
+        "leaderboard": "Топ",
+        "profile": "Профиль"
+    },
+    "store": {
+        "title": "Покупай и отправляй подарки",
+        "description": "Уникальные подарки для каждого от Crypto Pay.",
+        "emptyGifts": "Список подарков пуст"
+    },
+    "gift": {
+        "of": "из",
+        "notFound": "Подарок не найден",
+        "Delicious Cake": "Вкусный торт",
+        "Green Star": "Зеленая звезда",
+        "Blue Star": "Синяя звезда",
+        "Purchase this gift for the opportunity to give it to another user.": "Приобретите этот подарок, чтобы получить возможность подарить его другому пользователю.",
+        "recentlyActions": "Недавние действия",
+        "buyGift": "Купить подарок",
+        "actionsEmpty": "Список действий по подарку пуст"
+    },
+    "gifts": {
+        "title": "Отправляйте подарки в Telegram",
+        "description": "Отправляйте пользователям подарки, которые можно сохранить в их профиле приложения.",
+        "empty": "У вас пока нет подарков.",
+        "send": "Отправить"
+    },
+    "sendModal": {
+        "title": "Отправить подарок",
+        "gift": "Подарок",
+        "date": "Дата",
+        "price": "Цена",
+        "availability": "Доступно",
+        "button": "Отправить подарок"
+    },
+    "action": {
+        "send": {
+            "title": "Отправка",
+            "description": "отправил подарок"
+        },
+        "purchase": {
+            "title": "Покупка",
+            "description": "купил подарок"
+        }
+    },
+    "purchased": {
+        "title": "Подарок куплен",
+        "the": "",
+        "giftWasPurhased": "подарок был куплен за",
+        "notificationTitle": "Вы купили подарок",
+        "notificationDescription": "Теперь отправьте его своему другу.",
+        "notificationButton": "Отправить",
+        "mainButton": "Отправить подарок"
+    },
+    "received": {
+        "title": "Подарок получен",
+        "giftReceived": "Вы получили подарок",
+        "notificationTitle": "Подарок получен",
+        "notificationButton": "Посмотреть",
+        "mainButton": "Открыь профиль"
+    },
+    "leaderboard": {
+        "search": "Поиск",
+        "you": "Вы",
+        "gift_one": "{{count}} подарок",
+        "gift_few": "{{count}} подарка",
+        "gift_many": "{{count}} подарков"
+    },
+    "profile": {
+        "gift_one": "{{count}} подарок получен",
+        "gift_few": "{{count}} подарка получено",
+        "gift_many": "{{count}} подарков получено",
+        "history": "История действий",
+        "close": "Закрыть",
+        "from": "От",
+        "date": "Дата",
+        "price": "Цена",
+        "availability": "Доступно"
+    },
+    "history": {
+        "title": "Недавние действия",
+        "description": "Здесь история ваших действий.",
+        "Buy": "Покупка",
+        "Sent": "Отправка",
+        "Receive": "Получение",
+        "emptyTitle": "История пуста",
+        "emptyDescription": "Дарите и получайте подарки, и здесь что-то появится."
+    },
+    "common": {
+        "from": "от",
+        "to": "",
+        "openStore": "Открыть магазин"
+    }
+}

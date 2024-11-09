@@ -1,0 +1,98 @@
+{
+    "error": {
+        "title": "An error occurred",
+        "unknowError": "Unknown error"
+    },
+    "menu": {
+        "store": "Store",
+        "gifts": "Gifts",
+        "leaderboard": "Leaderboard",
+        "profile": "Profile"
+    },
+    "store": {
+        "title": "Buy and Send Gifts",
+        "description": "Unique gifts for everyone by Crypto Pay.",
+        "emptyGifts": "Gift list is empty"
+    },
+    "gift": {
+        "of": "of",
+        "notFound": "Gift not found",
+        "Delicious Cake": "Delicious Cake",
+        "Green Star": "Green Star",
+        "Blue Star": "Blue Star",
+        "Purchase this gift for the opportunity to give it to another user.": "Purchase this gift for the opportunity to give it to another user.",
+        "recentlyActions": "Recently Actions",
+        "buyGift": "Buy a Gift",
+        "actionsEmpty": "Gift action list is empty"
+    },
+    "gifts": {
+        "title": "Send Gifts in Telegram",
+        "description": "Send gifts to users that can be stored in their app profile.",
+        "empty": "You don't have any gifts yet.",
+        "send": "Send"
+    },
+    "sendModal": {
+        "title": "Send Gift",
+        "gift": "Gift",
+        "date": "Date",
+        "price": "Price",
+        "availability": "Availability",
+        "button": "Send Gift to Contact"
+    },
+    "action": {
+        "send": {
+            "title": "Send gift",
+            "description": "sent gift to"
+        },
+        "purchase": {
+            "title": "Buy gift",
+            "description": "bought a gift"
+        }
+    },
+    "purchased": {
+        "title": "Gift Purchased",
+        "the": "The",
+        "giftWasPurhased": "gift was purchased for",
+        "notificationTitle": "You Bought a Gift",
+        "notificationDescription": "Now send it to your friend.",
+        "notificationButton": "Send",
+        "mainButton": "Send Gift"
+    },
+    "received": {
+        "title": "Gift Received",
+        "giftReceived": "You have received",
+        "notificationTitle": "Gift Received",
+        "notificationButton": "View",
+        "mainButton": "Open Profile"
+    },
+    "leaderboard": {
+        "search": "Search",
+        "you": "You",
+        "gift": "{{count}} gift",
+        "gift_plural": "{{count}} gifts"
+    },
+    "profile": {
+        "gift": "{{count}} gift received",
+        "gift_plural": "{{count}} gifts received",
+        "history": "Recent Actions",
+        "close": "Close",
+        "from": "From",
+        "date": "Date",
+        "price": "Price",
+        "availability": "Availability"
+    },
+    "history": {
+        "title": "Recent Actions",
+        "description": "Here is your action history.",
+        "Buy": "Buy",
+        "Sent": "Sent",
+        "Receive": "Receive",
+        "emptyTitle": "History is Empty",
+        "emptyDescription": "Give and receive gifts so there's something here."
+    },
+    "common": {
+        "from": "from",
+        "to": "to",
+        "openStore": "Open Store"
+    }
+}

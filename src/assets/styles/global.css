@@ -1,0 +1,43 @@
+:root {
+  --safe-area-inset-bottom: calc(100vh - var(--tg-viewport-stable-height, 100vh));
+}
+
+html {
+  font-family: 'SF Pro Display', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-display: swap;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  height: 100%;
+}
+
+#root {
+  height: 100%;
+}
+
+.lottie_svg path[fill] {
+  fill: currentColor;
+}
+
+.lottie_svg path[stroke] {
+  stroke: currentColor;
+}
+
+.pb-safe-area {
+  padding-bottom: calc(var(--safe-area-inset-bottom) + 0.5rem);
+}
+
+@keyframes spin {
+  0% {
+      transform: rotate(0deg);
+  }
+  100% {
+      transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
