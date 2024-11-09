@@ -1,8 +1,6 @@
 import { CurrencyIcon, GiftImage, Modal } from '@/components';
-import { giftsMap } from '@/constants/index';
 import { useTelegram } from '@/hooks';
 import { GetMyGiftsResponse } from '@/services';
-import Lottie from 'lottie-react';
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
