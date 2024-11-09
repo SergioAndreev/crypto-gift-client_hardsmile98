@@ -2,7 +2,6 @@ import { CurrencyIcon, GiftImage } from '@/components';
 import { giftsMap } from '@/constants/gifts';
 import { hexToRGB } from '@/helpers';
 import { GetGiftsResponse } from '@/services';
-import Lottie from 'lottie-react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
