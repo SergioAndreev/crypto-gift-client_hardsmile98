@@ -15,13 +15,16 @@ function Purchased({ order }: PurchasedProps) {
   const navigate = useNavigate();
 
   const gift = order?.giftId;
+  const giftId = gift._id;
 
   const { tg } = useTelegram();
 
   useEffect(() => {
     const goToStore = () => navigate('/store');
+    const sendGift = () => tg.switchInlineQuery(`gift_${giftId}`, ['users']);
 
     tg.MainButton.text = t('purchased.mainButton');
+    tg.MainButton.onClick(sendGift);
     tg.MainButton.show();
 
     tg.SecondaryButton.text = t('common.openStore');
@@ -29,11 +32,12 @@ function Purchased({ order }: PurchasedProps) {
     tg.SecondaryButton.show();
 
     return () => {
+      tg.MainButton.offClick(sendGift);
       tg.SecondaryButton.offClick(goToStore);
       tg.MainButton.hide();
       tg.SecondaryButton.hide();
     };
-  }, [t, tg, navigate]);
+  }, [t, tg, giftId, navigate]);
 
   return (
     <div className='relative p-4 h-[100%] flex items-center justify-center flex-col'>
