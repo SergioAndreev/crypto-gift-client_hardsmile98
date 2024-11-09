@@ -126,7 +126,15 @@ function Profile() {
                     </p>
                   </div>
 
-                  <GiftImage slug={order.giftId.slug} autoPlay={false} loop={false} />
+                  <div className='aspect-square'>
+                    <GiftImage
+                      width={'100%'}
+                      height={'100%'}
+                      slug={order.giftId.slug}
+                      autoPlay={false}
+                      loop={false}
+                    />
+                  </div>
                 </div>
 
                 <h3 className='text-center text-sm font-medium'>{order.giftId.name}</h3>

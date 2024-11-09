@@ -17,7 +17,7 @@ function GiftCard({ gift, onSend }: GiftCardProps) {
       </h3>
 
       <div className='aspect-square mb-2'>
-        <GiftImage autoPlay={false} loop={false} slug={gift.slug} />
+        <GiftImage height='100%' width='100%' autoPlay={false} loop={false} slug={gift.slug} />
       </div>
 
       <Button onClick={() => onSend(gift._id)}>{t('gifts.send')}</Button>

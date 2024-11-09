@@ -37,7 +37,7 @@ function GiftCard({ gift }: GiftCardProps) {
         </p>
 
         <div className='pt-4 aspect-square'>
-          <GiftImage autoPlay={false} loop={false} slug={gift.slug} />
+          <GiftImage width='100%' height='100%' autoPlay={false} loop={false} slug={gift.slug} />
         </div>
 
         <h3 className='relative font-semibold mb-3'>{t(`gift.${gift.name}`)}</h3>
