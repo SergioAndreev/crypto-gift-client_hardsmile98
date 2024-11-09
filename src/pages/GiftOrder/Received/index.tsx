@@ -43,7 +43,8 @@ function Received({ order }: ReceivedProps) {
         <h5 className='font-semibold text-xl mb-2'>{t('received.title')}</h5>
 
         <p>
-          {t('received.giftReceived')} <span className='font-medium'>{t(`gift.${gift.name}`)}</span>.
+          {t('received.giftReceived')} <span className='font-medium'>{t(`gift.${gift.name}`)}</span>
+          {'.'}
         </p>
       </div>
 

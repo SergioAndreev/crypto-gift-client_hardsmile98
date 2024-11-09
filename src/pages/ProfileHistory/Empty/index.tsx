@@ -25,7 +25,7 @@ function Empty() {
   }, [t, tg, navigate]);
 
   return (
-    <div className='flex items-center justify-center h-[100%]'>
+    <div className='p-4 flex items-center justify-center h-[100%]'>
       <div className='text-center'>
         <img className='mb-4 inline-block w-[100px] h-[100px]' src={emptyGifts} alt='gifts' />
 
