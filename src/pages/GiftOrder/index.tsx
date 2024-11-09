@@ -23,7 +23,7 @@ function GiftOrder() {
     return <ErrorPage error={error} />;
   }
 
-  if (status !== 'purchased') {
+  if (status === 'purchased') {
     return <Purchased order={order} />;
   }
 
