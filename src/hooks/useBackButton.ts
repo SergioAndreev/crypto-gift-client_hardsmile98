@@ -2,7 +2,12 @@ import { useCallback, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router';
 import useTelegram from './useTelegram';
 
-const useBackButton = (backUrl?: string) => {
+type useBackButtonParams = {
+  backUrl?: string;
+  skip?: boolean;
+};
+
+const useBackButton = ({ backUrl, skip }: useBackButtonParams = {}) => {
   const navigate = useRef(useNavigate());
 
   const { tg } = useTelegram();
@@ -16,6 +21,10 @@ const useBackButton = (backUrl?: string) => {
   }, [navigate, backUrl]);
 
   useEffect(() => {
+    if (skip) {
+      return;
+    }
+
     tg.BackButton.show();
 
     tg.BackButton.onClick(back);
@@ -25,11 +34,7 @@ const useBackButton = (backUrl?: string) => {
 
       tg.BackButton.hide();
     };
-  }, [tg, back]);
-
-  return {
-    back,
-  };
+  }, [skip, tg, back]);
 };
 
 export default useBackButton;

@@ -1,4 +1,4 @@
-import { Link, useParams } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import PremiumIcon from '@/assets/images/premium.svg?react';
 import TimeIcon from '@/assets/images/time.svg?react';
 import { Avatar, ErrorPage, GiftImage, GiftsPlaceholder } from '@/components';
@@ -8,8 +8,15 @@ import { useState } from 'react';
 import { useGetOrdersReceivedQuery, useGetProfileQuery } from '@/services';
 import Skeleton from './Skeleton';
 import { useTranslation } from 'react-i18next';
+import { useBackButton } from '@/hooks';
 
 function Profile() {
+  const { pathname } = useLocation();
+
+  const isProfilePath = pathname === '/profile';
+
+  useBackButton({ skip: isProfilePath });
+
   const [actionIdSelected, setActionIdSelected] = useState<null | string>(null);
   const [isDetailModalOpened, setDetailModalOpened] = useState(false);
 

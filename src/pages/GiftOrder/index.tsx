@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom';
 import { ErrorPage, LoadingPage } from '@/components';
 
 function GiftOrder() {
-  useBackButton('/');
+  useBackButton({ backUrl: '/' });
 
   const { id: paymentId = '' } = useParams();
 

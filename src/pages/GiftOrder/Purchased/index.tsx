@@ -39,7 +39,7 @@ function Purchased({ order }: PurchasedProps) {
     <div className='relative p-4 h-[100%] flex items-center justify-center flex-col'>
       <div className='text-center'>
         <div className='inline-block w-[100px] h-[100px] mb-2'>
-          <GiftImage slug={gift.slug} autoPlay={false} loop={false} />
+          <GiftImage width='100%' height='100%' slug={gift.slug} autoPlay={false} loop={false} />
         </div>
 
         <h5 className='font-semibold text-xl mb-2'>{t('purchased.title')}</h5>
