@@ -36,8 +36,10 @@ function GiftCard({ gift }: GiftCardProps) {
           {gift.available} {t('gift.of')} {gift.maxAvailable}
         </p>
 
-        <div className='pt-4 aspect-square'>
-          <GiftImage width='100%' height='100%' autoPlay={false} loop={false} slug={gift.slug} />
+        <div className='pt-4'>
+          <div className='aspect-square'>
+            <GiftImage width='100%' height='100%' autoPlay={false} loop={false} slug={gift.slug} />
+          </div>
         </div>
 
         <h3 className='relative font-semibold mb-3'>{t(`gift.${gift.name}`)}</h3>
