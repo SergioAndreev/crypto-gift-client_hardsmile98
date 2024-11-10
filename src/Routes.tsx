@@ -8,7 +8,8 @@ const Profile = lazy(() => import('@/pages/Profile'));
 const Store = lazy(() => import('@/pages/Store'));
 const GiftDetail = lazy(() => import('@/pages/GiftDetail'));
 const ProfileHistory = lazy(() => import('@/pages/ProfileHistory'));
-const GiftOrder = lazy(() => import('@/pages/GiftOrder'));
+const GiftPurchased = lazy(() => import('@/pages/GiftPurchased'));
+const ReceiveGift = lazy(() => import('@/pages/ReceiveGift'));
 
 function Routes() {
   return (
@@ -78,10 +79,19 @@ function Routes() {
         />
 
         <Route
-          path='order/:id'
+          path='purchased/:paymentId'
           element={
             <Layout>
-              <GiftOrder />
+              <GiftPurchased />
+            </Layout>
+          }
+        />
+
+        <Route
+          path='receive/:id'
+          element={
+            <Layout>
+              <ReceiveGift />
             </Layout>
           }
         />

@@ -11,7 +11,11 @@ const getInitDataParams = (initData: string) => {
   }
 };
 
-const useRedirectToOrder = () => {
+/**
+ * Получает параметр start_param
+ * А так же редиректит на страницу об успешной покупке подарка
+ */
+const useGetStartParam = () => {
   const immutableNavigate = useRef(useNavigate());
 
   const { tg } = useTelegram();
@@ -19,24 +23,20 @@ const useRedirectToOrder = () => {
   useEffect(() => {
     const initDataParams = getInitDataParams(tg.initData);
 
-    if (!initDataParams) {
+    const startParam = initDataParams?.get('start_param');
+
+    if (!startParam?.includes('paymentId')) {
       return;
     }
 
-    const startParam = initDataParams.get('start_param');
+    const paymentId = startParam.split('_')?.[1];
 
-    if (!startParam?.includes('order')) {
+    if (!paymentId) {
       return;
     }
 
-    const orderId = startParam.split('_')?.[1];
-
-    if (!orderId) {
-      return;
-    }
-
-    immutableNavigate.current(`/order/${orderId}`);
+    immutableNavigate.current(`/purchased/${paymentId}`);
   }, [tg]);
 };
 
-export default useRedirectToOrder;
+export default useGetStartParam;

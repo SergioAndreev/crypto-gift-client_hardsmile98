@@ -1,21 +1,24 @@
-import { useTelegram } from '@/hooks';
+import { useBackButton, useTelegram } from '@/hooks';
 import { useEffect } from 'react';
-import { GiftImage, Notification } from '@/components';
-import { useNavigate } from 'react-router-dom';
+import { ErrorPage, GiftImage, LoadingPage, Notification } from '@/components';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { GetOrderByPaymentIdResponse } from '@/services';
+import { useGetOrderByPaymentIdQuery } from '@/services';
 
-type PurchasedProps = {
-  order: GetOrderByPaymentIdResponse['data'];
-};
+function GiftPurchased() {
+  useBackButton({ backUrl: '/' });
 
-function Purchased({ order }: PurchasedProps) {
+  const { paymentId = '' } = useParams();
+
+  const { data, isError, isLoading, error } = useGetOrderByPaymentIdQuery({ paymentId });
+
   const { t } = useTranslation();
 
   const navigate = useNavigate();
 
+  const order = data?.data;
   const gift = order?.giftId;
-  const giftId = gift._id;
+  const giftId = gift?._id;
 
   const { tg } = useTelegram();
 
@@ -38,6 +41,14 @@ function Purchased({ order }: PurchasedProps) {
       tg.SecondaryButton.hide();
     };
   }, [t, tg, giftId, navigate]);
+
+  if (isLoading) {
+    return <LoadingPage />;
+  }
+
+  if (isError || !gift) {
+    return <ErrorPage error={error} />;
+  }
 
   return (
     <div className='relative p-4 h-[100%] flex items-center justify-center flex-col'>
@@ -66,4 +77,4 @@ function Purchased({ order }: PurchasedProps) {
   );
 }
 
-export default Purchased;
+export default GiftPurchased;

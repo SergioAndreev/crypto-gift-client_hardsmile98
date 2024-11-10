@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { LoadingPage, ErrorPage } from '@/components';
-import { useRedirectToOrder, useTelegram } from './hooks';
+import { useGetStartParam, useTelegram } from './hooks';
 import { useSelector } from './store';
 import { useGetTokenQuery } from './services';
 import Routes from './Routes';
 
 function App() {
-  useRedirectToOrder();
+  useGetStartParam();
 
   const [appStatus, setAppStatus] = useState<'notinitialized' | 'error' | 'initialized'>(
     'notinitialized',

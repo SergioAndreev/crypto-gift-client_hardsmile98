@@ -4,6 +4,16 @@ import Profile from './Profile';
 import ProfileHistory from './ProfileHistory';
 import Store from './Store';
 import GiftDetail from './GiftDetail';
-import GiftOrder from './GiftOrder';
+import GiftPurchased from './GiftPurchased';
+import ReceiveGift from './ReceiveGift';
 
-export { Gifts, GiftDetail, Leaderboard, Profile, Store, ProfileHistory, GiftOrder };
+export {
+  Gifts,
+  GiftDetail,
+  Leaderboard,
+  Profile,
+  Store,
+  ProfileHistory,
+  GiftPurchased,
+  ReceiveGift,
+};

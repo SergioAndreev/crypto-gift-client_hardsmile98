@@ -93,6 +93,7 @@
     "common": {
         "from": "from",
         "to": "to",
-        "openStore": "Open Store"
+        "openStore": "Open Store",
+        "goToMain": "Go to home"
     }
 }

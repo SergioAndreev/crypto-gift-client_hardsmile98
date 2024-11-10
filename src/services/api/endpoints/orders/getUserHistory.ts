@@ -6,6 +6,7 @@ type GetUserHistoryResponse = {
     _id: string;
     date: string;
     actions: Array<{
+      _id: string;
       action: 'purchase' | 'send' | 'receive';
       gift: IGift;
       user: IUser;

@@ -52,7 +52,11 @@ function ProfileHistory() {
 
               <div>
                 {groupDate.actions?.map((action, index) => (
-                  <ActionItem action={action} isLast={index === groupDate.actions.length - 1} />
+                  <ActionItem
+                    key={action._id}
+                    action={action}
+                    isLast={index === groupDate.actions.length - 1}
+                  />
                 ))}
               </div>
             </div>

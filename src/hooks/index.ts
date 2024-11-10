@@ -1,5 +1,5 @@
 import useTelegram from './useTelegram';
 import useBackButton from './useBackButton';
-import useRedirectToOrder from './useRedirectToOrder';
+import useGetStartParam from './useGetStartParam';
 
-export { useTelegram, useBackButton, useRedirectToOrder };
+export { useTelegram, useBackButton, useGetStartParam };

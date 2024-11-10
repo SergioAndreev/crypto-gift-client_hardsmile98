@@ -1,18 +1,32 @@
-import { useTelegram } from '@/hooks';
+import { useBackButton, useTelegram } from '@/hooks';
 import { useCallback, useEffect } from 'react';
-import { GiftImage, Notification } from '@/components';
-import { useNavigate } from 'react-router-dom';
+import { ErrorPage, GiftImage, LoadingPage, Notification } from '@/components';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { GetOrderByPaymentIdResponse } from '@/services';
+import { useReceiveGiftMutation } from '@/services';
 
-type ReceivedProps = {
-  order: GetOrderByPaymentIdResponse['data'];
-};
+function Received() {
+  useBackButton({ backUrl: '/' });
 
-function Received({ order }: ReceivedProps) {
   const { t } = useTranslation();
 
+  const { id } = useParams();
+
+  const [searchParams] = useSearchParams();
+
+  const hash = searchParams.get('hash');
+
   const navigate = useNavigate();
+
+  const [receiveGift, { data, isLoading, isError, error }] = useReceiveGiftMutation();
+
+  useEffect(() => {
+    if (id && hash) {
+      receiveGift({ id, hash });
+    }
+  }, [id, hash, receiveGift]);
+
+  const order = {} as any;
 
   const gift = order?.giftId;
 
@@ -32,6 +46,14 @@ function Received({ order }: ReceivedProps) {
       tg.MainButton.hide();
     };
   }, [t, tg, goToProfile]);
+
+  if (isLoading) {
+    return <LoadingPage />;
+  }
+
+  if (isError || !data) {
+    return <ErrorPage error={error} />;
+  }
 
   return (
     <div className='relative p-4 h-[100%] flex items-center justify-center flex-col'>

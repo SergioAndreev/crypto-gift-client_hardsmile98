@@ -30,8 +30,6 @@ const buyGift = {
       id,
     },
   }),
-  keepUnusedDataFor: 60,
-  refetchOnMountOrArgChange: true,
 };
 
 export { buyGift, type BuyGiftResponse };
