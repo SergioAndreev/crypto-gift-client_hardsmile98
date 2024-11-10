@@ -32,7 +32,7 @@ function SendGiftModal({ isOpen, onClose, orderSelected }: SendGiftModalProps) {
       tg.MainButton.offClick(sendGift);
       tg.MainButton.hide();
     };
-  }, [t, giftId, isOpen, tg]);
+  }, [t, giftId, tg]);
 
   const gift = orderSelected?.giftId;
 
