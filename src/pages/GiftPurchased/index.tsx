@@ -32,7 +32,6 @@ function GiftPurchased() {
 
     tg.MainButton.text = t('purchased.mainButton');
     tg.MainButton.onClick(sendGift);
-    tg.MainButton.disable();
     tg.MainButton.show();
 
     tg.SecondaryButton.text = t('common.openStore');
