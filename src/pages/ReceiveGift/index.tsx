@@ -18,7 +18,7 @@ function Received() {
 
   const navigate = useNavigate();
 
-  const { data, isLoading, isError, error } = useReceiveGiftQuery(
+  const { data, isSuccess, isLoading, isError, error } = useReceiveGiftQuery(
     {
       id: id ?? '',
       hash: hash ?? '',
@@ -35,6 +35,10 @@ function Received() {
   const goToProfile = useCallback(() => navigate(`/leaderboard/${userId}`), [navigate, userId]);
 
   useEffect(() => {
+    if (!isSuccess) {
+      return;
+    }
+
     tg.MainButton.text = t('received.mainButton');
     tg.MainButton.show();
     tg.MainButton.onClick(goToProfile);
@@ -43,7 +47,7 @@ function Received() {
       tg.MainButton.offClick(goToProfile);
       tg.MainButton.hide();
     };
-  }, [t, tg, goToProfile]);
+  }, [t, isSuccess, tg, goToProfile]);
 
   if (isLoading) {
     return <LoadingPage />;

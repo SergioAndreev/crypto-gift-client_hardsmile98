@@ -27,11 +27,15 @@ function SendGiftModal({ isOpen, onClose, orderSelected }: SendGiftModalProps) {
       return;
     }
 
-    tg.MainButton.onClick(sendGift);
     tg.MainButton.text = t('sendModal.button');
+    tg.MainButton.onClick(sendGift);
     tg.MainButton.show();
 
+    console.log('sub');
+
     return () => {
+      console.log('usub');
+
       tg.MainButton.offClick(sendGift);
       tg.MainButton.hide();
     };

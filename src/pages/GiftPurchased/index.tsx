@@ -10,7 +10,7 @@ function GiftPurchased() {
 
   const { paymentId = '' } = useParams();
 
-  const { data, isError, isLoading, error } = useGetOrderByPaymentIdQuery({ paymentId });
+  const { data, isSuccess, isError, isLoading, error } = useGetOrderByPaymentIdQuery({ paymentId });
 
   const { t } = useTranslation();
 
@@ -28,10 +28,15 @@ function GiftPurchased() {
   );
 
   useEffect(() => {
+    if (!isSuccess) {
+      return;
+    }
+
     const goToStore = () => navigate('/store');
 
     tg.MainButton.text = t('purchased.mainButton');
     tg.MainButton.onClick(sendGift);
+    tg.MainButton.disable();
     tg.MainButton.show();
 
     tg.SecondaryButton.text = t('common.openStore');
@@ -44,7 +49,7 @@ function GiftPurchased() {
       tg.MainButton.hide();
       tg.SecondaryButton.hide();
     };
-  }, [t, tg, sendGift, navigate]);
+  }, [t, tg, isSuccess, sendGift, navigate]);
 
   if (isLoading) {
     return <LoadingPage />;
