@@ -11,9 +11,36 @@ const getInitDataParams = (initData: string) => {
   }
 };
 
+const getRedirectPath = (startParam: string) => {
+  try {
+    const [action, ...otherParam] = startParam.split('_');
+
+    switch (action) {
+      case 'purchase': {
+        const [paymentId] = otherParam;
+
+        return `/purchased/${paymentId}`;
+      }
+
+      case 'receive': {
+        const [id, hash] = otherParam;
+
+        return `/receive/${id}?hash=${hash}`;
+      }
+    }
+
+    return null;
+  } catch (_error) {
+    return null;
+  }
+};
+
 /**
  * Получает параметр start_param
- * А так же редиректит на страницу об успешной покупке подарка
+ *
+ * А так же редиректит
+ * Если paymentId, то на страницу успешной оплаты подарка
+ * Если receive, то на страницу получения подарка
  */
 const useGetStartParam = () => {
   const immutableNavigate = useRef(useNavigate());
@@ -25,17 +52,15 @@ const useGetStartParam = () => {
 
     const startParam = initDataParams?.get('start_param');
 
-    if (!startParam?.includes('paymentId')) {
+    if (!startParam) {
       return;
     }
 
-    const paymentId = startParam.split('_')?.[1];
+    const redirectPath = getRedirectPath(startParam);
 
-    if (!paymentId) {
-      return;
+    if (redirectPath) {
+      immutableNavigate.current(redirectPath);
     }
-
-    immutableNavigate.current(`/purchased/${paymentId}`);
   }, [tg]);
 };
 
