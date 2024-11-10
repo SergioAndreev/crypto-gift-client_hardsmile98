@@ -18,7 +18,7 @@ function GiftPurchased() {
 
   const order = data?.data;
   const gift = order?.giftId;
-  const giftId = gift?._id;
+  const orderId = order?._id;
 
   const { tg } = useTelegram();
 
@@ -28,7 +28,7 @@ function GiftPurchased() {
     }
 
     const goToStore = () => navigate('/store');
-    const sendGift = () => tg.switchInlineQuery(`gift_${giftId}`, ['users']);
+    const sendGift = () => tg.switchInlineQuery(`gift_${orderId}`, ['users']);
 
     tg.MainButton.text = t('purchased.mainButton');
     tg.MainButton.onClick(sendGift);
@@ -44,7 +44,7 @@ function GiftPurchased() {
       tg.MainButton.hide();
       tg.SecondaryButton.hide();
     };
-  }, [t, tg, giftId, isSuccess, navigate]);
+  }, [t, tg, orderId, isSuccess, navigate]);
 
   if (isLoading) {
     return <LoadingPage />;
@@ -75,7 +75,7 @@ function GiftPurchased() {
         title={t('purchased.notificationTitle')}
         description={t('purchased.notificationDescription')}
         buttonText={t('purchased.notificationButton')}
-        onButtonClick={() => tg.switchInlineQuery(`gift_${giftId}`, ['users'])}
+        onButtonClick={() => tg.switchInlineQuery(`gift_${orderId}`, ['users'])}
       />
     </div>
   );
