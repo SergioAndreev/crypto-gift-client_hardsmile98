@@ -1,6 +1,18 @@
+import { IGift, IUser } from '@/types';
+
 type ReceiveGiftResponse = {
   status: number;
-  data: any;
+  data: {
+    _id: string;
+    userId: IUser;
+    giftId: IGift;
+    hash: string;
+    status: 'sent';
+    purchaseDate: string;
+    paymentId: string;
+    sendDate: string;
+    recipientId: IUser;
+  };
 };
 
 const receiveGift = {

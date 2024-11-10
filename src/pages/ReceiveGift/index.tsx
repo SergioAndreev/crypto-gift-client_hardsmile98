@@ -26,13 +26,11 @@ function Received() {
     { skip: !id || !hash },
   );
 
-  const order = {} as any;
-
-  const gift = order?.giftId;
+  const order = data?.data;
 
   const { tg } = useTelegram();
 
-  const userId = order.userId?._id;
+  const userId = order?.userId?._id;
 
   const goToProfile = useCallback(() => navigate(`/leaderboard/${userId}`), [navigate, userId]);
 
@@ -51,9 +49,11 @@ function Received() {
     return <LoadingPage />;
   }
 
-  if (isError || !data) {
+  if (isError || !order) {
     return <ErrorPage error={error} />;
   }
+
+  const gift = order?.giftId;
 
   return (
     <div className='relative p-4 h-[100%] flex items-center justify-center flex-col'>
