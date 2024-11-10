@@ -15,14 +15,14 @@ function SendGiftModal({ isOpen, onClose, orderSelected }: SendGiftModalProps) {
 
   const { t } = useTranslation();
 
-  // const giftId = orderSelected?.giftId._id;
+  const giftId = orderSelected?.giftId._id;
 
   useEffect(() => {
     if (!isOpen) {
       return;
     }
 
-    const sendGift = () => alert('send');
+    const sendGift = () => tg.switchInlineQuery(`gift_${giftId}`, ['users']);
 
     tg.MainButton.text = t('sendModal.button');
     tg.MainButton.onClick(sendGift);
@@ -32,7 +32,7 @@ function SendGiftModal({ isOpen, onClose, orderSelected }: SendGiftModalProps) {
       tg.MainButton.offClick(sendGift);
       tg.MainButton.hide();
     };
-  }, [tg, isOpen, t]);
+  }, [tg, giftId, isOpen, t]);
 
   const gift = orderSelected?.giftId;
 
