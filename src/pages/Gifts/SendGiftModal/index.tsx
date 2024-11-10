@@ -1,7 +1,7 @@
 import { CurrencyIcon, GiftImage, Modal } from '@/components';
 import { useTelegram } from '@/hooks';
 import { GetMyGiftsResponse } from '@/services';
-import { useCallback, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 type SendGiftModalProps = {
