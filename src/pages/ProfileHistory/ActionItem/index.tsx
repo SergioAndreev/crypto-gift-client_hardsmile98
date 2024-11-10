@@ -52,7 +52,7 @@ function ActionItem({ action, isLast }: ActionItemProps) {
             </p>
           )}
 
-          {action.action === 'send' && (
+          {action.action === 'send' && action.recipient && (
             <p>
               {`${t('common.to')} `}
               <Link
@@ -64,7 +64,7 @@ function ActionItem({ action, isLast }: ActionItemProps) {
             </p>
           )}
 
-          {action.action === 'receive' && (
+          {action.action === 'receive' && action.user && (
             <p>
               {`${t('common.from')} `}
               <Link
