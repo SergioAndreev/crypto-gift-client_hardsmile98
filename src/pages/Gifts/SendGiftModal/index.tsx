@@ -1,7 +1,7 @@
 import { CurrencyIcon, GiftImage, Modal } from '@/components';
 import { useTelegram } from '@/hooks';
 import { GetMyGiftsResponse } from '@/services';
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 type SendGiftModalProps = {
@@ -17,12 +17,15 @@ function SendGiftModal({ isOpen, onClose, orderSelected }: SendGiftModalProps) {
 
   const giftId = orderSelected?.giftId._id;
 
+  const sendGift = useCallback(
+    () => tg.switchInlineQuery(`gift_${giftId}`, ['users']),
+    [tg, giftId],
+  );
+
   useEffect(() => {
     if (!isOpen) {
       return;
     }
-
-    const sendGift = () => tg.switchInlineQuery(`gift_${giftId}`, ['users']);
 
     tg.MainButton.onClick(sendGift);
     tg.MainButton.text = t('sendModal.button');
@@ -32,7 +35,7 @@ function SendGiftModal({ isOpen, onClose, orderSelected }: SendGiftModalProps) {
       tg.MainButton.offClick(sendGift);
       tg.MainButton.hide();
     };
-  }, [t, giftId, isOpen, tg]);
+  }, [t, sendGift, isOpen, tg]);
 
   const gift = orderSelected?.giftId;
 

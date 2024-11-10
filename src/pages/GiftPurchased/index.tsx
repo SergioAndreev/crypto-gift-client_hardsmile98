@@ -1,5 +1,5 @@
 import { useBackButton, useTelegram } from '@/hooks';
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { ErrorPage, GiftImage, LoadingPage, Notification } from '@/components';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -22,9 +22,13 @@ function GiftPurchased() {
 
   const { tg } = useTelegram();
 
+  const sendGift = useCallback(
+    () => tg.switchInlineQuery(`gift_${giftId}`, ['users']),
+    [tg, giftId],
+  );
+
   useEffect(() => {
     const goToStore = () => navigate('/store');
-    const sendGift = () => tg.switchInlineQuery(`gift_${giftId}`, ['users']);
 
     tg.MainButton.text = t('purchased.mainButton');
     tg.MainButton.onClick(sendGift);
@@ -40,7 +44,7 @@ function GiftPurchased() {
       tg.MainButton.hide();
       tg.SecondaryButton.hide();
     };
-  }, [t, tg, giftId, navigate]);
+  }, [t, tg, sendGift, navigate]);
 
   if (isLoading) {
     return <LoadingPage />;
@@ -71,7 +75,7 @@ function GiftPurchased() {
         title={t('purchased.notificationTitle')}
         description={t('purchased.notificationDescription')}
         buttonText={t('purchased.notificationButton')}
-        onButtonClick={() => {}}
+        onButtonClick={sendGift}
       />
     </div>
   );
