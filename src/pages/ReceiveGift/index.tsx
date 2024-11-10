@@ -3,7 +3,7 @@ import { useCallback, useEffect } from 'react';
 import { ErrorPage, GiftImage, LoadingPage, Notification } from '@/components';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useReceiveGiftMutation } from '@/services';
+import { useReceiveGiftQuery } from '@/services';
 
 function Received() {
   useBackButton({ backUrl: '/' });
@@ -18,13 +18,13 @@ function Received() {
 
   const navigate = useNavigate();
 
-  const [receiveGift, { data, isLoading, isError, error }] = useReceiveGiftMutation();
-
-  useEffect(() => {
-    if (id && hash) {
-      receiveGift({ id, hash });
-    }
-  }, [id, hash, receiveGift]);
+  const { data, isLoading, isError, error } = useReceiveGiftQuery(
+    {
+      id: id ?? '',
+      hash: hash ?? '',
+    },
+    { skip: !id || !hash },
+  );
 
   const order = {} as any;
 

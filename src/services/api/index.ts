@@ -50,7 +50,7 @@ export const publicApi = createApi({
       endpoints.getOrdersReceived,
     ),
     buyGift: builder.mutation<endpoints.BuyGiftResponse, { id: string }>(endpoints.buyGift),
-    receiveGift: builder.mutation<endpoints.ReceiveGiftResponse, { id: string; hash: string }>(
+    receiveGift: builder.query<endpoints.ReceiveGiftResponse, { id: string; hash: string }>(
       endpoints.receiveGift,
     ),
   }),
@@ -71,7 +71,7 @@ export const {
   useGetProfileQuery,
   useGetOrdersReceivedQuery,
   useBuyGiftMutation,
-  useReceiveGiftMutation,
+  useReceiveGiftQuery,
 } = publicApi;
 
 export * from './endpoints';
