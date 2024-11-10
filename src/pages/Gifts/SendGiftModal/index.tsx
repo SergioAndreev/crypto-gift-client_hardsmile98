@@ -18,19 +18,21 @@ function SendGiftModal({ isOpen, onClose, orderSelected }: SendGiftModalProps) {
   // const giftId = orderSelected?.giftId._id;
 
   useEffect(() => {
-    // if (!isOpen) {
-    //   return;
-    // }
+    if (!isOpen) {
+      return;
+    }
+
+    const sendGift = () => alert('send');
 
     tg.MainButton.text = t('sendModal.button');
-    tg.MainButton.onClick(() => tg.switchInlineQuery('gift_123122313', ['users']));
+    tg.MainButton.onClick(sendGift);
     tg.MainButton.show();
 
-    // return () => {
-    //   tg.MainButton.offClick(sendGift);
-    //   tg.MainButton.hide();
-    // };
-  }, [t, tg]);
+    return () => {
+      tg.MainButton.offClick(sendGift);
+      tg.MainButton.hide();
+    };
+  }, [tg, isOpen, t]);
 
   const gift = orderSelected?.giftId;
 
