@@ -28,10 +28,10 @@ function SendGiftModal({ isOpen, onClose, orderSelected }: SendGiftModalProps) {
     tg.MainButton.onClick(sendGift);
     tg.MainButton.show();
 
-    return () => {
-      tg.MainButton.offClick(sendGift);
-      tg.MainButton.hide();
-    };
+    // return () => {
+    //   tg.MainButton.offClick(sendGift);
+    //   tg.MainButton.hide();
+    // };
   }, [t, giftId, tg]);
 
   const gift = orderSelected?.giftId;
