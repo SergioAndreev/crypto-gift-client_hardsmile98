@@ -23,7 +23,7 @@ function SendGiftModal({ isOpen, onClose, orderSelected }: SendGiftModalProps) {
     // }
 
     tg.MainButton.text = t('sendModal.button');
-    tg.MainButton.onClick(() => alert('11231'));
+    tg.MainButton.onClick(() => tg.switchInlineQuery('gift_123122313', ['users']));
     tg.MainButton.show();
 
     // return () => {
