@@ -42,7 +42,9 @@ function Gifts() {
           {isLoading ? (
             <Skeleton />
           ) : isEmpty ? (
-            <EmptyPlaceholder description={t('gifts.empty')} isLinkVisivle />
+            <div className='bg-bg-secondary-light dark:bg-bg-secondary-dark rounded-[12px]'>
+              <EmptyPlaceholder description={t('gifts.empty')} isLinkVisivle />
+            </div>
           ) : (
             <div className='grid grid-cols-3 gap-2'>
               {orders?.map((order) => (
