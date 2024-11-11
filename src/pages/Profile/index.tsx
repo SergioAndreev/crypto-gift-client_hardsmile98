@@ -75,7 +75,7 @@ function Profile() {
               <Avatar
                 src={user?.avatar}
                 alt={user?.firstName}
-                className='w-20 h-20 inline-block rounded-full object-cover'
+                className='bg-bg-secondary-light dark:bg-bg-secondary-dark w-20 h-20 inline-block rounded-full object-cover'
               />
 
               <div

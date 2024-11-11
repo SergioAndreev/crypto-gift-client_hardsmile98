@@ -50,7 +50,7 @@ function UserItem({ user, position, isLast, isMyProfile, containerRef }: UserIte
     >
       <Avatar
         src={user.avatar}
-        className='w-10 h-10 rounded-full object-cover'
+        className='bg-bg-secondary-light dark:bg-bg-secondary-dark w-10 h-10 rounded-full object-cover'
         alt={user.firstName}
       />
 

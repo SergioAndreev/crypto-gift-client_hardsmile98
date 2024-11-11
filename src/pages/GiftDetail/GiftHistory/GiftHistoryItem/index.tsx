@@ -12,7 +12,7 @@ function GiftHistoryItem({ action }: GiftHistoryItemProps) {
       <div className='relative'>
         <Avatar
           src={action.user.avatar}
-          className='w-10 h-10 rounded-full object-cover'
+          className='bg-bg-secondary-light dark:bg-bg-secondary-dark w-10 h-10 rounded-full object-cover'
           alt={action.user.firstName}
         />
 

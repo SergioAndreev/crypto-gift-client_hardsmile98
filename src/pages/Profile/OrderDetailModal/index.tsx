@@ -67,7 +67,7 @@ function OrderDetailModal({ isOpen, onClose, orderSelected }: OrderDetailModalPr
               <Avatar
                 src={from?.avatar}
                 size='sm'
-                className='w-[20px] h-[20px] rounded-full object-cover'
+                className='bg-bg-secondary-light dark:bg-bg-primary-dark w-[20px] h-[20px] rounded-full object-cover'
                 alt={from?.firstName}
               />
 

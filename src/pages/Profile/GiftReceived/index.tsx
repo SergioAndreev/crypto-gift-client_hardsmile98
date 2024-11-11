@@ -21,7 +21,7 @@ function GiftReceived({ order, onGiftClick }: GiftReceivedProps) {
             alt={order.userId.firstName}
             src={order.userId.avatar}
             size='sm'
-            className='w-[16px] h-[16px] rounded-full object-cover'
+            className='w-[16px] h-[16px] rounded-full object-cover bg-bg-primary-light dark:bg-bg-primary-dark'
           />
 
           <p className='text-sm text-label-date-light dark:text-label-date-dark'>
