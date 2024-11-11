@@ -10,11 +10,11 @@ type GetProfileResponse = {
 };
 
 const getProfile = {
-  query: ({ id }: { id?: string }) => ({
+  query: ({ userId }: { userId?: string }) => ({
     url: '/user/profile',
     method: 'GET',
     params: {
-      id: id ?? undefined,
+      userId: userId ?? undefined,
     },
   }),
   keepUnusedDataFor: 60,

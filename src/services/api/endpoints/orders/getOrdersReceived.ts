@@ -15,11 +15,11 @@ type GetOrdersReceivedResponse = {
 };
 
 const getOrdersReceived = {
-  query: ({ id }: { id: string }) => ({
+  query: ({ userId }: { userId?: string }) => ({
     url: '/order/received',
     method: 'GET',
     params: {
-      id,
+      userId: userId ?? undefined,
     },
   }),
   keepUnusedDataFor: 60,

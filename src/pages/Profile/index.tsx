@@ -21,7 +21,7 @@ function Profile() {
   const [actionIdSelected, setActionIdSelected] = useState<null | string>(null);
   const [isDetailModalOpened, setDetailModalOpened] = useState(false);
 
-  const { id } = useParams();
+  const { id: userId } = useParams();
 
   const { t } = useTranslation();
 
@@ -29,22 +29,22 @@ function Profile() {
     data: userData,
     isLoading: isProfileLoading,
     isError: isProfileError,
+    isFetching: isProfielFetching,
     error: profileError,
-  } = useGetProfileQuery({ id });
+  } = useGetProfileQuery({ userId });
 
   const data = userData?.data;
   const isMyProfile = data?.isMyProfile;
   const position = data?.position;
   const user = data?.user;
 
-  const userId = id ?? user?._id;
-
   const {
     data: ordersReceivedData,
     isLoading: isOrdersLoading,
     isError: isOrdersError,
+    isFetching: isOrdersFetching,
     error: ordersError,
-  } = useGetOrdersReceivedQuery({ id: userId ?? '' }, { skip: !userId });
+  } = useGetOrdersReceivedQuery({ userId });
 
   const orders = ordersReceivedData?.data;
 
@@ -65,8 +65,8 @@ function Profile() {
   return (
     <>
       <div className='px-4 py-2 text-center relative'>
-        {isProfileLoading ? (
-          <div className='bg-bg-secondary-light dark:bg-bg-secondary-dark animate-pulse h-[180px] rounded-md'></div>
+        {isProfileLoading || isProfielFetching ? (
+          <div className='bg-bg-secondary-light dark:bg-bg-secondary-dark animate-pulse h-[160px] rounded-md'></div>
         ) : (
           <div>
             {isMyProfile && <Settings />}
@@ -108,11 +108,11 @@ function Profile() {
       </div>
 
       <div className='p-4'>
-        {isOrdersLoading ? (
+        {isOrdersLoading || isOrdersFetching ? (
           <Skeleton />
         ) : isEmpty ? (
           <div className='bg-bg-secondary-light dark:bg-bg-secondary-dark rounded-[12px]'>
-            <EmptyPlaceholder description={t('profile.empty')} isLinkVisivle />
+            <EmptyPlaceholder description={t('profile.empty')} isLinkVisivle={isProfilePath} />
           </div>
         ) : (
           <div className='grid grid-cols-3 gap-2'>

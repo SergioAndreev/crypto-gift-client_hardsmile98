@@ -45,8 +45,10 @@ export const publicApi = createApi({
     getLeaderboard: builder.query<endpoints.GetLeaderboardResponse, undefined>(
       endpoints.getLeaderboard,
     ),
-    getProfile: builder.query<endpoints.GetProfileResponse, { id?: string }>(endpoints.getProfile),
-    getOrdersReceived: builder.query<endpoints.GetOrdersReceivedResponse, { id: string }>(
+    getProfile: builder.query<endpoints.GetProfileResponse, { userId?: string }>(
+      endpoints.getProfile,
+    ),
+    getOrdersReceived: builder.query<endpoints.GetOrdersReceivedResponse, { userId?: string }>(
       endpoints.getOrdersReceived,
     ),
     buyGift: builder.mutation<endpoints.BuyGiftResponse, { id: string }>(endpoints.buyGift),
