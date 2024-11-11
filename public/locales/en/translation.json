@@ -83,7 +83,7 @@
         "price": "Price",
         "availability": "Availability",
         "empty_gifts_in_profile": "You can buy a gift to receive a gift in return.",
-        "empty_gifts_in_leaderboard": "Вы можете купить подарок, чтобы получить подарок взамен."
+        "empty_gifts_in_leaderboard": "The user has no received gifts."
     },
     "history": {
         "title": "Recent Actions",

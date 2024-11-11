@@ -84,7 +84,7 @@
         "price": "Цена",
         "availability": "Наличие",
         "empty_gifts_in_profile": "Вы можете купить подарок, чтобы получить подарок взамен.",
-        "empty_gifts_in_leaderboard": "The user has no received gifts."
+        "empty_gifts_in_leaderboard": "У пользователя нет полученных подарков."
     },
     "history": {
         "title": "Недавние действия",
