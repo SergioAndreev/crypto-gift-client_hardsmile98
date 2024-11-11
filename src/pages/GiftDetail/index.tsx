@@ -82,12 +82,12 @@ function Gift() {
     }
   }, [tg, isBuyGiftSuccess, miniAppPayUrl]);
 
-  const buyGiftCb = useCallback(() => buyGift({ id }), [buyGift, id]);
-
   useEffect(() => {
-    if (isSoldOut) {
+    if (isSoldOut || !id) {
       return;
     }
+
+    const buyGiftCb = () => buyGift({ id });
 
     tg.MainButton.text = t('gift.buyGift');
     tg.MainButton.onClick(buyGiftCb);
@@ -97,7 +97,7 @@ function Gift() {
       tg.MainButton.offClick(buyGiftCb);
       tg.MainButton.hide();
     };
-  }, [buyGiftCb, t, tg, isSoldOut]);
+  }, [buyGift, id, t, tg, isSoldOut]);
 
   const isError = isGiftError || isGiftHistoryError;
   const error = giftError || giftErroriftHistoryError;
