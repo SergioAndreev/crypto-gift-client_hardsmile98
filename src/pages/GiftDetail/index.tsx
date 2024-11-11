@@ -79,6 +79,7 @@ function Gift() {
   useEffect(() => {
     if (isBuyGiftSuccess && miniAppPayUrl) {
       tg.openTelegramLink(miniAppPayUrl);
+      tg.close();
     }
   }, [tg, isBuyGiftSuccess, miniAppPayUrl]);
 
