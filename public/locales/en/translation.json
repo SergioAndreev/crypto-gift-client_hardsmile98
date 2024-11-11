@@ -62,7 +62,7 @@
     "received": {
         "title": "Gift Received",
         "gift_received_you": "You have received",
-        "gift_received_name": "{{name}} have received",
+        "gift_received_name": "{{name}} has received",
         "notification_title": "Gift Received",
         "notification_button": "View",
         "main_button": "Open Profile"
@@ -94,6 +94,7 @@
         "empty_description": "Give and receive gifts so there's something here."
     },
     "common": {
+        "of": "of",
         "from": "from",
         "to": "to",
         "open_store": "Open Store",
