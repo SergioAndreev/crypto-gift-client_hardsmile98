@@ -1,4 +1,3 @@
-import emptyGifts from '@/assets/animations/emoji-balloons.json';
 import { EmptyPlaceholder } from '@/components';
 import { useTelegram } from '@/hooks';
 import { useEffect } from 'react';

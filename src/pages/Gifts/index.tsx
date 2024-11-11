@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ErrorPage, GiftsPlaceholder } from '@/components';
+import { ErrorPage, EmptyPlaceholder } from '@/components';
 import GiftCard from './GiftCard';
 import SendGiftModal from './SendGiftModal';
 import { useTranslation } from 'react-i18next';
@@ -42,7 +42,7 @@ function Gifts() {
           {isLoading ? (
             <Skeleton />
           ) : isEmpty ? (
-            <GiftsPlaceholder text={t('gifts.empty')} />
+            <EmptyPlaceholder description={t('gifts.empty')} isLinkVisivle />
           ) : (
             <div className='grid grid-cols-3 gap-2'>
               {orders?.map((order) => (
