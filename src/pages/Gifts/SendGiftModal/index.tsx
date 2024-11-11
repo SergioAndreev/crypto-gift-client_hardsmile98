@@ -2,7 +2,7 @@ import { CurrencyIcon, GiftImage, Modal } from '@/components';
 import { useTelegram } from '@/hooks';
 import { GetMyGiftsResponse } from '@/services';
 import { LottieRefCurrentProps } from 'lottie-react';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 type SendGiftModalProps = {
@@ -13,6 +13,10 @@ type SendGiftModalProps = {
 
 function SendGiftModal({ isOpen, onClose, orderSelected }: SendGiftModalProps) {
   const lottieRef = useRef<LottieRefCurrentProps | null>(null);
+
+  const [isTransitioning, setIsTransitioning] = useState(false);
+
+  useEffect(() => setIsTransitioning(isOpen), [isOpen]);
 
   const { tg } = useTelegram();
 
@@ -51,9 +55,10 @@ function SendGiftModal({ isOpen, onClose, orderSelected }: SendGiftModalProps) {
     <Modal isOpen={isOpen} onClose={onClose}>
       <div>
         <div className='text-center'>
-          <div className='inline-block w-[150px] h-[150px]'>
+          <div className='relative inline-block w-[150px] h-[150px]'>
             {gift?.slug && (
               <GiftImage
+                className={`absolute top-0 bottom-0 left-0 right-0 transition-transform duration-500 ${isTransitioning ? 'scale-100' : 'scale-0'}`}
                 lottieRef={lottieRef}
                 width='100%'
                 height='100%'

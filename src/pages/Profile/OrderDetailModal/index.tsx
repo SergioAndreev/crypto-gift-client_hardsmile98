@@ -2,7 +2,7 @@ import { Avatar, CurrencyIcon, GiftImage, Modal } from '@/components';
 import { useTelegram } from '@/hooks';
 import { GetOrdersReceivedResponse } from '@/services';
 import { LottieRefCurrentProps } from 'lottie-react';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
@@ -13,6 +13,10 @@ type OrderDetailModalProps = {
 };
 
 function OrderDetailModal({ isOpen, onClose, orderSelected }: OrderDetailModalProps) {
+  const [isTransitioning, setIsTransitioning] = useState(false);
+
+  useEffect(() => setIsTransitioning(isOpen), [isOpen]);
+
   const { tg } = useTelegram();
 
   const { t } = useTranslation();
@@ -49,9 +53,15 @@ function OrderDetailModal({ isOpen, onClose, orderSelected }: OrderDetailModalPr
     <Modal isOpen={isOpen} onClose={onClose}>
       <div>
         <div className='text-center'>
-          <div className='inline-block w-[150px] h-[150px]'>
+          <div className='relative inline-block w-[150px] h-[150px]'>
             {gift?.slug && (
-              <GiftImage lottieRef={lottieRef} slug={gift?.slug} loop={false} autoPlay={false} />
+              <GiftImage
+                className={`absolute top-0 bottom-0 left-0 right-0 transition-transform duration-500 ${isTransitioning ? 'scale-100' : 'scale-0'}`}
+                lottieRef={lottieRef}
+                slug={gift.slug}
+                loop={false}
+                autoPlay={false}
+              />
             )}
           </div>
 
