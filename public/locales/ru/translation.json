@@ -60,8 +60,8 @@
     },
     "received": {
         "title": "Подарок получен",
-        "giftReceived_you": "Вы получили подарок",
-        "giftReceived_name": "{{name}} получил подарок",
+        "gift_received_you": "Вы получили подарок",
+        "gift_received_name": "{{name}} получил подарок",
         "notification_title": "Подарок получен",
         "notification_button": "Посмотреть",
         "main_button": "Открыь профиль"
