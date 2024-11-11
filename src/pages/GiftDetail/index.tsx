@@ -39,7 +39,7 @@ function Gift() {
   const gift = giftDetail?.data;
   const history = giftHistory?.data;
 
-  const isCanBuy = gift && gift?.available > 0;
+  const isSoldOut = gift && gift?.available === 0;
 
   const { tg } = useTelegram();
 
@@ -85,6 +85,10 @@ function Gift() {
   const buyGiftCb = useCallback(() => buyGift({ id }), [buyGift, id]);
 
   useEffect(() => {
+    if (isSoldOut) {
+      return;
+    }
+
     tg.MainButton.text = t('gift.buyGift');
     tg.MainButton.onClick(buyGiftCb);
     tg.MainButton.show();
@@ -93,15 +97,7 @@ function Gift() {
       tg.MainButton.offClick(buyGiftCb);
       tg.MainButton.hide();
     };
-  }, [buyGiftCb, t, tg]);
-
-  useEffect(() => {
-    if (isCanBuy) {
-      tg.MainButton.enable();
-    } else {
-      tg.MainButton.disable();
-    }
-  }, [isCanBuy, tg]);
+  }, [buyGiftCb, t, tg, isSoldOut]);
 
   const isError = isGiftError || isGiftHistoryError;
   const error = giftError || giftErroriftHistoryError;

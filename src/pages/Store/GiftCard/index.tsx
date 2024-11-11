@@ -12,10 +12,10 @@ type GiftCardProps = {
 function GiftCard({ gift }: GiftCardProps) {
   const { t } = useTranslation();
 
-  const isSold = gift.available === 0;
+  const isSoldOut = gift.available === 0;
 
   const onLinkClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-    if (isSold) {
+    if (isSoldOut) {
       e.preventDefault();
     }
   };
@@ -52,10 +52,10 @@ function GiftCard({ gift }: GiftCardProps) {
 
         <p
           className={`relative p-1 w-[100%] h-[30px] gap-1 inline-flex rounded-[100px] justify-center items-center text-sm font-semibold
-            ${isSold ? 'bg-label-secondary-light/10 text-label-secondary-light' : 'text-white bg-primary-light dark:bg-primary-dark'}`}
+            ${isSoldOut ? 'bg-label-secondary-light/10 text-label-secondary-light' : 'text-white bg-primary-light dark:bg-primary-dark'}`}
         >
-          {isSold ? (
-            t('gift.sold')
+          {isSoldOut ? (
+            t('gift.soldOut')
           ) : (
             <>
               <CurrencyIcon className='w-[24px] h-[24px] inline-block' currency={gift.currency} />
