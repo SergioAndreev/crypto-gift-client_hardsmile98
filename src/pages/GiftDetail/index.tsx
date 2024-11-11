@@ -39,7 +39,7 @@ function Gift() {
   const gift = giftDetail?.data;
   const history = giftHistory?.data;
 
-  const isSoldOut = gift && gift?.available === 0;
+  const isSoldOut = gift && gift.available === 0;
 
   const { tg } = useTelegram();
 
@@ -83,19 +83,19 @@ function Gift() {
   }, [tg, isBuyGiftSuccess, miniAppPayUrl]);
 
   useEffect(() => {
-    if (isSoldOut || !id) {
-      return;
-    }
-
     const buyGiftCb = () => buyGift({ id });
 
-    tg.MainButton.text = t('gift.buyGift');
-    tg.MainButton.onClick(buyGiftCb);
-    tg.MainButton.show();
+    if (!isSoldOut) {
+      tg.MainButton.text = t('gift.buyGift');
+      tg.MainButton.onClick(buyGiftCb);
+      tg.MainButton.show();
+    }
 
     return () => {
-      tg.MainButton.offClick(buyGiftCb);
-      tg.MainButton.hide();
+      if (!isSoldOut) {
+        tg.MainButton.offClick(buyGiftCb);
+        tg.MainButton.hide();
+      }
     };
   }, [buyGift, id, t, tg, isSoldOut]);
 
