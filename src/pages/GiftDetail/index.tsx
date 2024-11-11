@@ -1,7 +1,7 @@
 import { useBackButton, useTelegram } from '@/hooks';
 import Detail from './Detail';
 import GiftHistory from './GiftHistory';
-import { useCallback, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import {
   isErrorWithMessage,
