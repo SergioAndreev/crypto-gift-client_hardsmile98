@@ -14,11 +14,8 @@ type GetMyGiftsResponse = {
 
 const getMyGifts = {
   query: () => ({
-    url: '/order/byStatus',
+    url: '/order/getPurchased',
     method: 'GET',
-    params: {
-      status: 'purchased',
-    },
   }),
   keepUnusedDataFor: 60,
   refetchOnMountOrArgChange: true,
