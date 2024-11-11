@@ -1,5 +1,4 @@
 import { CurrencyIcon, GiftImage } from '@/components';
-import { giftsMap } from '@/constants/gifts';
 import { hexToRGB } from '@/helpers';
 import { GetGiftsResponse } from '@/services';
 import React from 'react';
@@ -12,17 +11,14 @@ type GiftCardProps = {
 
 function GiftCard({ gift }: GiftCardProps) {
   const { t } = useTranslation();
-
-  const giftData = giftsMap[gift.slug];
-
   return (
     <Link
       key={gift._id}
       to={`/gift/${gift._id}`}
       style={
         {
-          '--gradient-start': giftData?.bgColor,
-          '--gradient-end': giftData?.bgColor ? hexToRGB(giftData.bgColor, 0.3) : undefined,
+          '--gradient-start': gift.bgColor,
+          '--gradient-end': hexToRGB(gift.bgColor, 0.3),
         } as React.CSSProperties
       }
       className={`overflow-hidden after:bg-cover after-bg-center after:bg-tg-pattern after:absolute after:top-0 

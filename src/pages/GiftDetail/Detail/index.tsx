@@ -3,7 +3,6 @@ import { hexToRGB } from '@/helpers';
 import { LottieRefCurrentProps } from 'lottie-react';
 import { CurrencyIcon, GiftImage } from '@/components';
 import { useTranslation } from 'react-i18next';
-import { giftsMap } from '@/constants/gifts';
 import { GetGiftResponse } from '@/services';
 
 type DetailProps = {
@@ -25,15 +24,13 @@ function Detail({ gift }: DetailProps) {
     return null;
   }
 
-  const giftData = giftsMap[gift.slug];
-
   return (
     <>
       <div
         style={
           {
-            '--gradient-start': giftData?.bgColor,
-            '--gradient-end': giftData?.bgColor ? hexToRGB(giftData.bgColor, 0.3) : undefined,
+            '--gradient-start': gift.bgColor,
+            '--gradient-end': hexToRGB(gift.bgColor, 0.3),
           } as React.CSSProperties
         }
         className={`overflow-hidden after:bg-cover after-bg-center after:bg-tg-pattern after:absolute after:top-0 

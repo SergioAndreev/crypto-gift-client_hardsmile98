@@ -2,6 +2,7 @@ export interface IGift {
   _id: string;
   name: string;
   description: string;
+  bgColor: string;
   price: number;
   currency: string;
   slug: string;

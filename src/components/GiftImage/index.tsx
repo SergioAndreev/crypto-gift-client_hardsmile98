@@ -1,4 +1,4 @@
-import { giftsMap } from '@/constants';
+import { animationGiftsMap } from '@/constants';
 import Lottie, { LottieComponentProps } from 'lottie-react';
 
 interface GiftImageProps extends Omit<LottieComponentProps, 'animationData'> {
@@ -6,13 +6,13 @@ interface GiftImageProps extends Omit<LottieComponentProps, 'animationData'> {
 }
 
 function GiftImage({ slug, ...props }: GiftImageProps) {
-  const giftData = giftsMap[slug];
+  const animationData = animationGiftsMap[slug];
 
-  if (!giftData?.animationData) {
+  if (!animationData) {
     return null;
   }
 
-  return <Lottie {...props} animationData={giftData.animationData} />;
+  return <Lottie {...props} animationData={animationData} />;
 }
 
 export default GiftImage;
