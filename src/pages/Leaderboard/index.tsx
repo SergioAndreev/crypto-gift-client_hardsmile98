@@ -22,7 +22,7 @@ function Leaderboard() {
     isLoading: isUserLoading,
     isError: isUserError,
     error: userError,
-  } = useGetProfileQuery({ id: undefined });
+  } = useGetProfileQuery({ userId: undefined });
 
   const users = topData?.data;
   const myProfile = userData?.data?.user;
