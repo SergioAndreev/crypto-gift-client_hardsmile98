@@ -63,6 +63,7 @@ function OrderDetailModal({ isOpen, onClose, orderSelected }: OrderDetailModalPr
             <span className='p-4 w-[110px] text-label-secondary-light dark:text-label-secondary-dark'>
               {t('profile.from')}
             </span>
+
             <span className='p-4 grow text-label-primary-light dark:text-label-primary-dark flex items-center gap-2'>
               <Avatar
                 src={from?.avatar}
@@ -85,6 +86,7 @@ function OrderDetailModal({ isOpen, onClose, orderSelected }: OrderDetailModalPr
             <span className='p-4 w-[110px] text-label-secondary-light dark:text-label-secondary-dark'>
               {t('profile.date')}
             </span>
+
             <span className='p-4 grow text-label-primary-light dark:text-label-primary-dark'>
               {orderSelected?.sendDate && new Date(orderSelected.sendDate).toLocaleString()}
             </span>
@@ -94,6 +96,7 @@ function OrderDetailModal({ isOpen, onClose, orderSelected }: OrderDetailModalPr
             <span className='p-4 w-[110px] text-label-secondary-light dark:text-label-secondary-dark'>
               {t('profile.price')}
             </span>
+
             <span className='p-4 grow text-label-primary-light dark:text-label-primary-dark flex items-center gap-2'>
               <CurrencyIcon withBackground currency={gift?.currency} />
               {`${gift?.price} ${gift?.currency}`}
@@ -104,9 +107,12 @@ function OrderDetailModal({ isOpen, onClose, orderSelected }: OrderDetailModalPr
             <span className='p-4 w-[110px] text-label-secondary-light dark:text-label-secondary-dark'>
               {t('profile.availability')}
             </span>
-            <span className='p-4 grow text-label-primary-light dark:text-label-primary-dark'>
-              {gift?.available} {t('common.of')} {gift?.maxAvailable}
-            </span>
+
+            {gift && (
+              <span className='p-4 grow text-label-primary-light dark:text-label-primary-dark'>
+                {gift.maxAvailable - gift.available} {t('common.of')} {gift.maxAvailable}
+              </span>
+            )}
           </div>
         </div>
       </div>
