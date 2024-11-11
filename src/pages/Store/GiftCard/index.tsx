@@ -11,10 +11,20 @@ type GiftCardProps = {
 
 function GiftCard({ gift }: GiftCardProps) {
   const { t } = useTranslation();
+
+  const isSold = gift.available === 0;
+
+  const onLinkClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+    if (isSold) {
+      e.preventDefault();
+    }
+  };
+
   return (
     <Link
       key={gift._id}
       to={`/gift/${gift._id}`}
+      onClick={onLinkClick}
       style={
         {
           '--gradient-start': gift.bgColor,
@@ -25,7 +35,7 @@ function GiftCard({ gift }: GiftCardProps) {
         after:left-0 after:right-0 after:bottom-0 after:opacity-[5%] after:z-1 
         before:bg-gradient-to-b before:from-[var(--gradient-start)] before:to-[var(--gradient-end)] 
         before:absolute before:top-0 before:left-0 before:right-0 before:bottom-0 
-        before:opacity-[20%] before:z-2 relative text-center rounded-[12px] p-6 cursor-pointer transition-transform`}
+        before:opacity-[20%] before:z-2 relative text-center rounded-[12px] p-6 transition-transform`}
     >
       <div className='relative z-10 flex flex-col justify-between h-[100%]'>
         <p className='absolute top-[-8px] right-[-8px] text-label-secondary-light dark:text-label-secondary-dark text-sm'>
@@ -41,11 +51,17 @@ function GiftCard({ gift }: GiftCardProps) {
         <h3 className='relative font-semibold mb-3'>{t(`gift.${gift.name}`)}</h3>
 
         <p
-          className={`relative p-1 w-[100%] gap-1 inline-flex rounded-[100px] 
-          justify-center items-center text-white bg-primary-light text-sm font-semibold`}
+          className={`relative p-1 w-[100%] h-[30px] gap-1 inline-flex rounded-[100px] justify-center items-center text-sm font-semibold
+            ${isSold ? 'bg-label-secondary-light/10 text-label-secondary-light' : 'text-white bg-primary-light dark:bg-primary-dark'}`}
         >
-          <CurrencyIcon className='w-[24px] h-[24px] inline-block' currency={gift.currency} />
-          {` ${gift.price} ${gift.currency}`}
+          {isSold ? (
+            t('gift.sold')
+          ) : (
+            <>
+              <CurrencyIcon className='w-[24px] h-[24px] inline-block' currency={gift.currency} />
+              {` ${gift.price} ${gift.currency}`}
+            </>
+          )}
         </p>
       </div>
     </Link>

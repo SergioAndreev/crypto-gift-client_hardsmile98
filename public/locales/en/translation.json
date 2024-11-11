@@ -15,6 +15,7 @@
         "emptyGifts": "Gift list is empty"
     },
     "gift": {
+        "sold": "Sold Out",
         "of": "of",
         "notFound": "Gift not found",
         "Delicious Cake": "Delicious Cake",

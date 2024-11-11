@@ -106,7 +106,7 @@ function Gift() {
   const isError = isGiftError || isGiftHistoryError;
   const error = giftError || giftErroriftHistoryError;
 
-  if (isError || id === '') {
+  if (isError || !id) {
     return <ErrorPage error={error} />;
   }
 
