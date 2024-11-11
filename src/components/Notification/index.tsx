@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import GiftImage from '../GiftImage';
 
 type NotificationProps = {
@@ -9,16 +9,28 @@ type NotificationProps = {
   onButtonClick: () => void;
 };
 
+const DURATION = 10 * 1000; // 10 секунд
+
 function Notification({ title, description, slug, buttonText, onButtonClick }: NotificationProps) {
   const [isVisible, setVisible] = useState(false);
 
+  const timeoutRef = useRef<NodeJS.Timeout>();
+
   useEffect(() => {
     setVisible(true);
+
+    timeoutRef.current = setTimeout(() => setVisible(false), DURATION);
+
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
   }, []);
 
   return (
     <div
-      className={`transition-all duration-1000 absolute bottom-4 left-4 right-4 rounded-[12px] flex items-center gap-3 px-4 py-3 bg-bg-notification-light dark:bg-bg-notification-dark text-white ${isVisible ? 'opacity-1 visible' : 'opacity-0 invisible'}`}
+      className={`transition-all duration-[1.5s] absolute bottom-4 left-4 right-4 rounded-[12px] flex items-center gap-3 px-4 py-3 bg-bg-notification-light dark:bg-bg-notification-dark text-white ${isVisible ? 'opacity-1 visible' : 'opacity-0 invisible'}`}
     >
       <div className='inline-block w-[32px] h-[32px]'>
         <GiftImage height='100%' width='100%' slug={slug} autoPlay={false} loop={false} />
