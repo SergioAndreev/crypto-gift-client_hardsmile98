@@ -69,12 +69,14 @@
     "leaderboard": {
         "search": "Search",
         "you": "You",
-        "gift": "{{count}} gift",
-        "gift_plural": "{{count}} gifts"
+        "gift_one": "{{count}} gift",
+        "gift_few": "{{count}} gifts",
+        "gift_many": "{{count}} gifts"
     },
     "profile": {
-        "gift": "{{count}} gift received",
-        "gift_plural": "{{count}} gifts received",
+        "gift_one": "{{count}} gift received",
+        "gift_few": "{{count}} gifts received",
+        "gift_many": "{{count}} gifts received",
         "history": "Recent Actions",
         "close": "Close",
         "from": "From",
