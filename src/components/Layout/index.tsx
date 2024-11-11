@@ -17,7 +17,7 @@ function Layout({ children, bottomBar }: LayoutProps) {
 
   return (
     <div
-      className={`flex flex-col h-[100%] transition bg-white text-black dark:bg-bg-primary-dark dark:text-white`}
+      className={`flex flex-col h-[100%] transition-height bg-white text-black dark:bg-bg-primary-dark dark:text-white`}
     >
       <div ref={containerRef} className='grow overflow-y-auto'>
         {children}
