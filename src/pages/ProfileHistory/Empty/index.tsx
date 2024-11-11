@@ -1,4 +1,5 @@
-import emptyGifts from '@/assets/images/empty-gifts.webp';
+import emptyGifts from '@/assets/animations/emoji-balloons.json';
+import { EmptyPlaceholder } from '@/components';
 import { useTelegram } from '@/hooks';
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -26,13 +27,10 @@ function Empty() {
 
   return (
     <div className='p-4 flex items-center justify-center h-[100%]'>
-      <div className='text-center'>
-        <img className='mb-4 inline-block w-[100px] h-[100px]' src={emptyGifts} alt='gifts' />
-
-        <h1 className='mb-2 text-xl font-semibold'>{t('history.emptyTitle')}</h1>
-
-        <p>{t('history.emptyDescription')}</p>
-      </div>
+      <EmptyPlaceholder
+        title={t('history.emptyTitle')}
+        description={t('history.emptyDescription')}
+      />
     </div>
   );
 }

@@ -80,7 +80,8 @@
         "from": "From",
         "date": "Date",
         "price": "Price",
-        "availability": "Availability"
+        "availability": "Availability",
+        "empty": "You can buy a gift to receive a gift in return."
     },
     "history": {
         "title": "Recent Actions",

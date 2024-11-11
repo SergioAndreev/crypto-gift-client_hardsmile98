@@ -3,7 +3,7 @@ import CurrencyIcon from './CurrencyIcon';
 import Button from './Button';
 import ActionIcon from './ActionIcon';
 import BottomNavigation from './BottomNavigation';
-import GiftsPlaceholder from './GiftsPlaceholder';
+import EmptyPlaceholder from './EmptyPlaceholder';
 import Modal from './Modal';
 import Loader from './Loader';
 import LoadingPage from './LoadingPage';
@@ -18,7 +18,7 @@ export {
   Button,
   ActionIcon,
   BottomNavigation,
-  GiftsPlaceholder,
+  EmptyPlaceholder,
   Modal,
   Loader,
   LoadingPage,

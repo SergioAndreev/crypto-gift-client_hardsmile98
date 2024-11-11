@@ -1,5 +1,6 @@
 import { CurrencyIcon, GiftImage } from '@/components';
 import { hexToRGB } from '@/helpers';
+import { useTelegram } from '@/hooks';
 import { GetGiftsResponse } from '@/services';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
@@ -12,12 +13,16 @@ type GiftCardProps = {
 function GiftCard({ gift }: GiftCardProps) {
   const { t } = useTranslation();
 
+  const { tg } = useTelegram();
+
   const isSoldOut = gift.available === 0;
 
   const onLinkClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     if (isSoldOut) {
       e.preventDefault();
     }
+
+    tg.HapticFeedback.impactOccurred('light');
   };
 
   return (

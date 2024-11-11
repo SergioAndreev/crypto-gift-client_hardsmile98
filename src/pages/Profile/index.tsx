@@ -1,7 +1,7 @@
 import { Link, useLocation, useParams } from 'react-router-dom';
 import PremiumIcon from '@/assets/images/premium.svg?react';
 import TimeIcon from '@/assets/images/time.svg?react';
-import { Avatar, ErrorPage, GiftImage, GiftsPlaceholder } from '@/components';
+import { Avatar, ErrorPage, EmptyPlaceholder } from '@/components';
 import Settings from './Settings';
 import OrderDetailModal from './OrderDetailModal';
 import { useState } from 'react';
@@ -9,6 +9,7 @@ import { useGetOrdersReceivedQuery, useGetProfileQuery } from '@/services';
 import Skeleton from './Skeleton';
 import { useTranslation } from 'react-i18next';
 import { useBackButton } from '@/hooks';
+import GiftReceived from './GiftReceived';
 
 function Profile() {
   const { pathname } = useLocation();
@@ -47,12 +48,12 @@ function Profile() {
 
   const orders = ordersReceivedData?.data;
 
-  const onActionClick = (id: string) => {
+  const onGiftClick = (id: string) => {
     setActionIdSelected(id);
     setDetailModalOpened(true);
   };
 
-  const isEmpty = false;
+  const isEmpty = orders?.length === 0;
 
   const error = profileError || ordersError;
   const isError = isProfileError || isOrdersError;
@@ -110,42 +111,13 @@ function Profile() {
         {isOrdersLoading ? (
           <Skeleton />
         ) : isEmpty ? (
-          <GiftsPlaceholder text='You can buy a gift to receive a gift in return.' />
+          <div className='bg-bg-secondary-light dark:bg-bg-secondary-dark rounded-[12px]'>
+            <EmptyPlaceholder description={t('profile.empty')} isLinkVisivle />
+          </div>
         ) : (
           <div className='grid grid-cols-3 gap-2'>
             {orders?.map((order) => (
-              <div
-                key={order._id}
-                onClick={() => onActionClick(order._id)}
-                className='cursor-pointer flex flex-col justify-between bg-bg-secondary-light dark:bg-bg-secondary-dark rounded-2xl p-3'
-              >
-                <div>
-                  <div className='flex items-center justify-between flex-wrap gap-1'>
-                    <Avatar
-                      alt={order.userId.firstName}
-                      src={order.userId.avatar}
-                      size='sm'
-                      className='w-[16px] h-[16px] rounded-full object-cover'
-                    />
-
-                    <p className='text-sm text-label-date-light dark:text-label-date-dark'>
-                      1 of {order.giftId.maxAvailable}
-                    </p>
-                  </div>
-
-                  <div className='aspect-square'>
-                    <GiftImage
-                      width={'100%'}
-                      height={'100%'}
-                      slug={order.giftId.slug}
-                      autoPlay={false}
-                      loop={false}
-                    />
-                  </div>
-                </div>
-
-                <h3 className='text-center text-sm font-medium'>{order.giftId.name}</h3>
-              </div>
+              <GiftReceived key={order._id} onGiftClick={onGiftClick} order={order} />
             ))}
           </div>
         )}
