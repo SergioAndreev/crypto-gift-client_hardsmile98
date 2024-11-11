@@ -70,13 +70,11 @@
         "search": "Search",
         "you": "You",
         "gift_one": "{{count}} gift",
-        "gift_few": "{{count}} gifts",
-        "gift_many": "{{count}} gifts"
+        "gift_other": "{{count}} gifts"
     },
     "profile": {
         "gift_one": "{{count}} gift received",
-        "gift_few": "{{count}} gifts received",
-        "gift_many": "{{count}} gifts received",
+        "gift_other": "{{count}} gifts received",
         "history": "Recent Actions",
         "close": "Close",
         "from": "From",
