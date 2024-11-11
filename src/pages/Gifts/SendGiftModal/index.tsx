@@ -1,7 +1,8 @@
 import { CurrencyIcon, GiftImage, Modal } from '@/components';
 import { useTelegram } from '@/hooks';
 import { GetMyGiftsResponse } from '@/services';
-import { useEffect } from 'react';
+import { LottieRefCurrentProps } from 'lottie-react';
+import { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 
 type SendGiftModalProps = {
@@ -11,11 +12,21 @@ type SendGiftModalProps = {
 };
 
 function SendGiftModal({ isOpen, onClose, orderSelected }: SendGiftModalProps) {
+  const lottieRef = useRef<LottieRefCurrentProps | null>(null);
+
   const { tg } = useTelegram();
 
   const { t } = useTranslation();
 
   const orderId = orderSelected?._id;
+
+  useEffect(() => {
+    if (isOpen) {
+      lottieRef.current?.goToAndStop?.(0, true);
+
+      lottieRef.current?.play?.();
+    }
+  }, [isOpen]);
 
   useEffect(() => {
     if (!isOpen) {
@@ -43,6 +54,7 @@ function SendGiftModal({ isOpen, onClose, orderSelected }: SendGiftModalProps) {
           <div className='inline-block w-[150px] h-[150px]'>
             {gift?.slug && (
               <GiftImage
+                lottieRef={lottieRef}
                 width='100%'
                 height='100%'
                 slug={gift.slug}

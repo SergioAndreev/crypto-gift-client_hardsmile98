@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import GiftImage from '../GiftImage';
+import { LottieRefCurrentProps } from 'lottie-react';
 
 type NotificationProps = {
   title: string;
@@ -15,6 +16,16 @@ function Notification({ title, description, slug, buttonText, onButtonClick }: N
   const [isVisible, setVisible] = useState(false);
 
   const timeoutRef = useRef<NodeJS.Timeout>();
+
+  const lottieRef = useRef<LottieRefCurrentProps | null>(null);
+
+  useEffect(() => {
+    if (isVisible) {
+      lottieRef.current?.goToAndStop?.(0, true);
+
+      lottieRef.current?.play?.();
+    }
+  }, [isVisible]);
 
   useEffect(() => {
     setVisible(true);
@@ -33,7 +44,14 @@ function Notification({ title, description, slug, buttonText, onButtonClick }: N
       className={`transition-all duration-[1.5s] absolute bottom-4 left-4 right-4 rounded-[12px] flex items-center gap-3 px-4 py-3 bg-bg-notification-light dark:bg-bg-notification-dark text-white ${isVisible ? 'opacity-1 visible' : 'opacity-0 invisible'}`}
     >
       <div className='inline-block w-[32px] h-[32px]'>
-        <GiftImage height='100%' width='100%' slug={slug} autoPlay={false} loop={false} />
+        <GiftImage
+          lottieRef={lottieRef}
+          height='100%'
+          width='100%'
+          slug={slug}
+          autoPlay={false}
+          loop={false}
+        />
       </div>
 
       <div className='flex grow items-center justify-between'>

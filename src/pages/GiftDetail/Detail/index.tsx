@@ -15,9 +15,9 @@ function Detail({ gift }: DetailProps) {
   const lottieRef = useRef<LottieRefCurrentProps | null>(null);
 
   const onPlayAnination = () => {
-    lottieRef.current?.goToAndStop(0, true);
+    lottieRef.current?.goToAndStop?.(0, true);
 
-    lottieRef.current?.play();
+    lottieRef.current?.play?.();
   };
 
   if (!gift) {

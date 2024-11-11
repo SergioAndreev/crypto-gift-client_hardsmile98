@@ -1,7 +1,8 @@
 import { Avatar, CurrencyIcon, GiftImage, Modal } from '@/components';
 import { useTelegram } from '@/hooks';
 import { GetOrdersReceivedResponse } from '@/services';
-import { useEffect } from 'react';
+import { LottieRefCurrentProps } from 'lottie-react';
+import { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
@@ -15,6 +16,16 @@ function OrderDetailModal({ isOpen, onClose, orderSelected }: OrderDetailModalPr
   const { tg } = useTelegram();
 
   const { t } = useTranslation();
+
+  const lottieRef = useRef<LottieRefCurrentProps | null>(null);
+
+  useEffect(() => {
+    if (isOpen) {
+      lottieRef.current?.goToAndStop?.(0, true);
+
+      lottieRef.current?.play?.();
+    }
+  }, [isOpen]);
 
   useEffect(() => {
     if (!isOpen) {
@@ -39,7 +50,9 @@ function OrderDetailModal({ isOpen, onClose, orderSelected }: OrderDetailModalPr
       <div>
         <div className='text-center'>
           <div className='inline-block w-[150px] h-[150px]'>
-            {gift?.slug && <GiftImage slug={gift?.slug} loop={false} autoPlay={false} />}
+            {gift?.slug && (
+              <GiftImage lottieRef={lottieRef} slug={gift?.slug} loop={false} autoPlay={false} />
+            )}
           </div>
 
           <h3 className='mt-3 mb-6 font-semibold text-xl'>{t(`gift.${gift?.name}`)}</h3>

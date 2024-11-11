@@ -1,9 +1,11 @@
-import { useBackButton, useTelegram } from '@/hooks';
 import { useEffect } from 'react';
+import effect from '@/assets/animations/effect-gift-purchased.json';
+import { useBackButton, useTelegram } from '@/hooks';
 import { ErrorPage, GiftImage, LoadingPage, Notification } from '@/components';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useGetOrderByPaymentIdQuery } from '@/services';
+import Lottie from 'lottie-react';
 
 function GiftPurchased() {
   useBackButton({ backUrl: '/' });
@@ -57,8 +59,17 @@ function GiftPurchased() {
   return (
     <div className='relative p-4 h-[100%] flex items-center justify-center flex-col'>
       <div className='text-center'>
-        <div className='inline-block w-[100px] h-[100px] mb-2'>
+        <div className='inline-block w-[100px] h-[100px] mb-2 relative'>
           <GiftImage width='100%' height='100%' slug={gift.slug} autoPlay={false} loop={false} />
+
+          <Lottie
+            className='w-[150px] h-[150px] absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2'
+            width='100%'
+            height='100%'
+            animationData={effect}
+            autoPlay={false}
+            loop={false}
+          />
         </div>
 
         <h5 className='font-semibold text-xl mb-2'>{t('purchased.title')}</h5>
