@@ -47,8 +47,6 @@ function SendGiftModal({ isOpen, onClose, orderSelected }: SendGiftModalProps) {
 
   const gift = orderSelected?.giftId;
 
-  console.log(orderSelected);
-
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <div>
