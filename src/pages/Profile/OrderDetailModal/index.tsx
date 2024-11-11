@@ -105,7 +105,7 @@ function OrderDetailModal({ isOpen, onClose, orderSelected }: OrderDetailModalPr
               {t('profile.availability')}
             </span>
             <span className='p-4 grow text-label-primary-light dark:text-label-primary-dark'>
-              {gift?.available} of {gift?.maxAvailable}
+              {gift?.available} {t('common.of')} {gift?.maxAvailable}
             </span>
           </div>
         </div>

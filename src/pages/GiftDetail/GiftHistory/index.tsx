@@ -12,7 +12,7 @@ function GiftHistory({ history }: GiftHistoryProps) {
   return (
     <>
       <p className='text-label-secondary-light dark:text-label-secondary-dark text-sm uppercase'>
-        {t('gift.recentlyActions')}
+        {t('gift.recently_actions')}
       </p>
 
       <div className='mt-4'>
@@ -20,7 +20,7 @@ function GiftHistory({ history }: GiftHistoryProps) {
           history?.map((action) => <GiftHistoryItem key={action._id} action={action} />)
         ) : (
           <div className='text-label-secondary-light dark:text-label-secondary-dark'>
-            {t('gift.actionsEmpty')}
+            {t('gift.actions_empty')}
           </div>
         )}
       </div>

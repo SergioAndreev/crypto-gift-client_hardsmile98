@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 function ErrorPage({ error }: { error: unknown }) {
   const { t } = useTranslation();
 
-  const errorMessage = (isErrorWithMessage(error) && error.data.message) || t('error.unknowError');
+  const errorMessage = (isErrorWithMessage(error) && error.data.message) || t('error.unknow_error');
 
   return (
     <div className='p-4 text-black dark:text-white bg-bg-primary-light dark:bg-bg-primary-dark h-[100%] flex flex-col items-center justify-center'>
@@ -16,7 +16,7 @@ function ErrorPage({ error }: { error: unknown }) {
       </p>
 
       <Link className='text-primary-light dark:text-primary-dark' to='/'>
-        ‹ {t('common.goToMain')}
+        ‹ {t('common.go_to_main')}
       </Link>
     </div>
   );

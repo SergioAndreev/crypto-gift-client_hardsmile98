@@ -34,7 +34,7 @@ function Store() {
         ) : gifts?.length ? (
           gifts.map((gift) => <GiftCard key={gift._id} gift={gift} />)
         ) : (
-          t('store.emptyGifts')
+          t('store.empty_gifts')
         )}
       </div>
     </div>

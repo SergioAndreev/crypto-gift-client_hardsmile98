@@ -27,7 +27,7 @@ function EmptyPlaceholder({ title, description, isLinkVisivle }: EmptyPlaceholde
 
       {isLinkVisivle && (
         <Link className='mt-4 inline-block text-primary-light dark:text-primary-dark' to='/store'>
-          {t('common.openStore')}
+          {t('common.open_store')}
         </Link>
       )}
     </div>

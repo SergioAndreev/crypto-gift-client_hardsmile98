@@ -3,17 +3,11 @@ import Detail from './Detail';
 import GiftHistory from './GiftHistory';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import {
-  isErrorWithMessage,
-  useBuyGiftMutation,
-  useGetGiftHistoryQuery,
-  useGetGiftQuery,
-} from '@/services';
+import { useBuyGiftMutation, useGetGiftHistoryQuery, useGetGiftQuery } from '@/services';
 import { useTranslation } from 'react-i18next';
 import { ErrorPage } from '@/components';
 import DetailSkeleton from './DetailSkeleton';
 import GiftHistorySkeleton from './GiftHistorySkeleton';
-import { useSnackbar } from 'notistack';
 
 function Gift() {
   useBackButton();
@@ -43,8 +37,6 @@ function Gift() {
 
   const { tg } = useTelegram();
 
-  const { enqueueSnackbar } = useSnackbar();
-
   const [
     buyGift,
     {
@@ -52,17 +44,10 @@ function Gift() {
       isLoading: isBuyGiftLoading,
       isSuccess: isBuyGiftSuccess,
       isError: isBuyGiftError,
-      error: buyGiftError,
     },
   ] = useBuyGiftMutation();
 
   const miniAppPayUrl = buyGiftData?.data?.miniAppPayUrl;
-
-  useEffect(() => {
-    if (isBuyGiftError && isErrorWithMessage(buyGiftError)) {
-      enqueueSnackbar(buyGiftError.data.message, { variant: 'error' });
-    }
-  }, [enqueueSnackbar, isBuyGiftError, buyGiftError]);
 
   useEffect(() => {
     if (isBuyGiftLoading) {
@@ -90,7 +75,7 @@ function Gift() {
 
     const buyGiftCb = () => buyGift({ id });
 
-    tg.MainButton.text = t('gift.buyGift');
+    tg.MainButton.text = t('gift.buy_gift');
     tg.MainButton.onClick(buyGiftCb);
     tg.MainButton.show();
 

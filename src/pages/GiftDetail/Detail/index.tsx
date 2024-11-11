@@ -55,7 +55,7 @@ function Detail({ gift }: DetailProps) {
           <h3 className='font-semibold text-xl'>{t(`gift.${gift.name}`)}</h3>
 
           <div className='font-medium text-primary-light dark:text-primary-dark bg-[#E0EFFF] dark:bg-[#19283A] px-2 rounded-[100px]'>
-            {`${gift.available} ${t('gift.of')} ${gift.maxAvailable}`}
+            {`${gift.available} ${t('common.of')} ${gift.maxAvailable}`}
           </div>
         </div>
 

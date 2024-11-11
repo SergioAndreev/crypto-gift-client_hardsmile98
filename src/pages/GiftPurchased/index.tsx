@@ -32,11 +32,11 @@ function GiftPurchased() {
     const goToStore = () => navigate('/store');
     const sendGift = () => tg.switchInlineQuery(`gift_${orderId}`, ['users']);
 
-    tg.MainButton.text = t('purchased.mainButton');
+    tg.MainButton.text = t('purchased.main_button');
     tg.MainButton.onClick(sendGift);
     tg.MainButton.show();
 
-    tg.SecondaryButton.text = t('common.openStore');
+    tg.SecondaryButton.text = t('common.open_store');
     tg.SecondaryButton.onClick(goToStore);
     tg.SecondaryButton.show();
 
@@ -76,16 +76,16 @@ function GiftPurchased() {
 
         <p>
           {t('purchased.the')} <span className='font-medium'>{t(`gift.${gift.name}`)}</span>{' '}
-          {t('purchased.giftWasPurhased')}{' '}
+          {t('purchased.gift_was_purhased')}{' '}
           <span className='font-medium'>{`${gift.price} ${gift.currency}`}</span>.
         </p>
       </div>
 
       <Notification
         slug={gift.slug}
-        title={t('purchased.notificationTitle')}
-        description={t('purchased.notificationDescription')}
-        buttonText={t('purchased.notificationButton')}
+        title={t('purchased.notification_title')}
+        description={t('purchased.notification_description')}
+        buttonText={t('purchased.notification_button')}
         onButtonClick={() => tg.switchInlineQuery(`gift_${orderId}`, ['users'])}
       />
     </div>

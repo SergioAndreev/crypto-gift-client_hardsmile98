@@ -1,7 +1,7 @@
 {
     "error": {
         "title": "Произошла ошибка",
-        "unknowError": "Неизвестная ошибка"
+        "unknow_error": "Неизвестная ошибка"
     },
     "menu": {
         "store": "Магазин",
@@ -12,19 +12,19 @@
     "store": {
         "title": "Покупай и отправляй подарки",
         "description": "Уникальные подарки для каждого от Crypto Pay.",
-        "emptyGifts": "Список подарков пуст"
+        "empty_gifts": "Список подарков пуст"
     },
     "gift": {
-        "soldOut": "Распродан",
+        "sold_out": "Распродан",
         "of": "из",
         "notFound": "Подарок не найден",
         "Delicious Cake": "Вкусный торт",
         "Green Star": "Зеленая звезда",
         "Blue Star": "Синяя звезда",
         "Purchase this gift for the opportunity to give it to another user.": "Приобретите этот подарок, чтобы получить возможность подарить его другому пользователю.",
-        "recentlyActions": "Недавние действия",
-        "buyGift": "Купить подарок",
-        "actionsEmpty": "Список действий по подарку пуст"
+        "recently_actions": "Недавние действия",
+        "buy_gift": "Купить подарок",
+        "actions_empty": "Список действий по подарку пуст"
     },
     "gifts": {
         "title": "Отправляйте подарки в Telegram",
@@ -53,18 +53,19 @@
     "purchased": {
         "title": "Подарок куплен",
         "the": "",
-        "giftWasPurhased": "подарок был куплен за",
-        "notificationTitle": "Вы купили подарок",
-        "notificationDescription": "Теперь отправьте его своему другу.",
-        "notificationButton": "Отправить",
-        "mainButton": "Отправить подарок"
+        "gift_was_purhased": "подарок был куплен за",
+        "notification_title": "Вы купили подарок",
+        "notification_description": "Теперь отправьте его своему другу.",
+        "notification_button": "Отправить",
+        "main_button": "Отправить подарок"
     },
     "received": {
         "title": "Подарок получен",
-        "giftReceived": "Вы получили подарок",
-        "notificationTitle": "Подарок получен",
-        "notificationButton": "Посмотреть",
-        "mainButton": "Открыь профиль"
+        "giftReceived_you": "Вы получили подарок",
+        "giftReceived_name": "{{name}} получил подарок",
+        "notification_title": "Подарок получен",
+        "notification_button": "Посмотреть",
+        "main_button": "Открыь профиль"
     },
     "leaderboard": {
         "search": "Поиск",
@@ -91,13 +92,13 @@
         "Buy": "Покупка",
         "Sent": "Отправка",
         "Receive": "Получение",
-        "emptyTitle": "История пуста",
-        "emptyDescription": "Дарите и получайте подарки, и здесь что-то появится."
+        "empty_title": "История пуста",
+        "empty_description": "Дарите и получайте подарки, и здесь что-то появится."
     },
     "common": {
         "from": "от",
         "to": "",
-        "openStore": "Открыть магазин",
-        "goToMain": "Вернуться на главную"
+        "open_store": "Открыть магазин",
+        "go_to_main": "Вернуться на главную"
     }
 }

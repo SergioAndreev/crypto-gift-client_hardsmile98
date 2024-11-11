@@ -26,7 +26,10 @@ function Received() {
     { skip: !id || !hash },
   );
 
-  const order = data?.data;
+  const order = data?.data.order;
+  const myUserId = data?.data?.myUserId;
+
+  const receivedByMe = order?.recipientId._id === myUserId;
 
   const { tg } = useTelegram();
 
@@ -39,7 +42,7 @@ function Received() {
       return;
     }
 
-    tg.MainButton.text = t('received.mainButton');
+    tg.MainButton.text = t('received.main_button');
     tg.MainButton.show();
     tg.MainButton.onClick(goToProfile);
 
@@ -69,18 +72,23 @@ function Received() {
         <h5 className='font-semibold text-xl mb-2'>{t('received.title')}</h5>
 
         <p>
-          {t('received.giftReceived')} <span className='font-medium'>{t(`gift.${gift.name}`)}</span>
+          {receivedByMe
+            ? t('received.gift_received_you')
+            : t('received.gift_received_name', { name: order.recipientId.firstName })}{' '}
+          <span className='font-medium'>{t(`gift.${gift.name}`)}</span>
           {'.'}
         </p>
       </div>
 
-      <Notification
-        slug={gift.slug}
-        title={t('received.notificationTitle')}
-        description={`${gift.name} ${t('common.from')} ${order?.userId?.firstName}`}
-        buttonText={t('received.notificationButton')}
-        onButtonClick={goToProfile}
-      />
+      {receivedByMe && (
+        <Notification
+          slug={gift.slug}
+          title={t('received.notification_title')}
+          description={`${gift.name} ${t('common.from')} ${order?.userId?.firstName}`}
+          buttonText={t('received.notification_button')}
+          onButtonClick={goToProfile}
+        />
+      )}
     </div>
   );
 }

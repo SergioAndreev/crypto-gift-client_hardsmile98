@@ -44,7 +44,7 @@ function GiftCard({ gift }: GiftCardProps) {
     >
       <div className='relative z-10 flex flex-col justify-between h-[100%]'>
         <p className='absolute top-[-8px] right-[-8px] text-label-secondary-light dark:text-label-secondary-dark text-sm'>
-          {gift.available} {t('gift.of')} {gift.maxAvailable}
+          {gift.available} {t('common.of')} {gift.maxAvailable}
         </p>
 
         <div className='pt-4'>
@@ -60,7 +60,7 @@ function GiftCard({ gift }: GiftCardProps) {
             ${isSoldOut ? 'bg-label-secondary-light/10 text-label-secondary-light' : 'text-white bg-primary-light dark:bg-primary-dark'}`}
         >
           {isSoldOut ? (
-            t('gift.soldOut')
+            t('gift.sold_out')
           ) : (
             <>
               <CurrencyIcon className='w-[24px] h-[24px] inline-block' currency={gift.currency} />

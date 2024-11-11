@@ -101,7 +101,7 @@ function SendGiftModal({ isOpen, onClose, orderSelected }: SendGiftModalProps) {
               {t('sendModal.availability')}
             </span>
             <span className='p-4 grow text-label-primary-light dark:text-label-primary-dark'>
-              {`${gift?.available} ${t('gift.of')} ${gift?.maxAvailable}`}
+              {`${gift?.available} ${t('common.of')} ${gift?.maxAvailable}`}
             </span>
           </div>
         </div>
