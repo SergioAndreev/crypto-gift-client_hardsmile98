@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 type GiftCardProps = {
   gift: IGift;
-  onSend: (id: string) => void;
+  onSend: () => void;
 };
 
 function GiftCard({ gift, onSend }: GiftCardProps) {
@@ -20,7 +20,7 @@ function GiftCard({ gift, onSend }: GiftCardProps) {
         <GiftImage height='100%' width='100%' autoPlay={false} loop={false} slug={gift.slug} />
       </div>
 
-      <Button onClick={() => onSend(gift._id)}>{t('gifts.send')}</Button>
+      <Button onClick={onSend}>{t('gifts.send')}</Button>
     </div>
   );
 }

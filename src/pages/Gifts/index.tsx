@@ -15,11 +15,11 @@ function Gifts() {
 
   const isEmpty = orders?.length === 0;
 
-  const [giftIdSelected, setGiftIdSelected] = useState<null | string>(null);
+  const [orderIdSelected, setOrderIdSelected] = useState<null | string>(null);
   const [isSendModalOpened, setSendModalOpened] = useState(false);
 
-  const onOpenSendModal = (id: string) => {
-    setGiftIdSelected(id);
+  const onSend = (id: string) => {
+    setOrderIdSelected(id);
     setSendModalOpened(true);
   };
 
@@ -46,7 +46,7 @@ function Gifts() {
           ) : (
             <div className='grid grid-cols-3 gap-2'>
               {orders?.map((order) => (
-                <GiftCard key={order._id} gift={order.giftId} onSend={onOpenSendModal} />
+                <GiftCard key={order._id} gift={order.giftId} onSend={() => onSend(order._id)} />
               ))}
             </div>
           )}
@@ -54,7 +54,7 @@ function Gifts() {
       </div>
 
       <SendGiftModal
-        orderSelected={orders?.find((order) => order.giftId._id === giftIdSelected)}
+        orderSelected={orders?.find((order) => order._id === orderIdSelected)}
         isOpen={isSendModalOpened}
         onClose={() => setSendModalOpened(false)}
       />
