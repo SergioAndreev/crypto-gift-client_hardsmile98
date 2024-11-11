@@ -1,12 +1,15 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Search from './Search';
 import UserItem from './UserItem';
 import { useGetLeaderboardQuery, useGetProfileQuery } from '@/services';
 import { ErrorPage } from '@/components';
 import Skeleton from './Skeleton';
+import { IUser } from '@/types';
+import { debounce } from '@/helpers';
 
 function Leaderboard() {
   const [search, setSearch] = useState('');
+  const [filteredUsers, setFilteredUsers] = useState<IUser[]>([]);
 
   const сontainerRef = useRef<HTMLDivElement | null>(null);
 
@@ -27,9 +30,17 @@ function Leaderboard() {
   const users = topData?.data;
   const myProfile = userData?.data?.user;
 
-  const filteredUsers = (users || [])?.filter((user) =>
-    user?.firstName?.toLowerCase()?.includes(search.toLowerCase()),
-  );
+  useEffect(() => {
+    const handleSearch = debounce((search: string) => {
+      const results = (users || [])?.filter((user) =>
+        user?.firstName?.toLowerCase()?.includes(search.toLowerCase()),
+      );
+
+      setFilteredUsers(results);
+    }, 300);
+
+    handleSearch(search);
+  }, [search, users]);
 
   const isError = isTopError || isUserError;
   const isLoading = isTopLoading || isUserLoading;

@@ -1,4 +1,4 @@
-function hexToRGB(hex: string, alpha: number) {
+export function hexToRGB(hex: string, alpha: number) {
   if (!hex) {
     return undefined;
   }
@@ -14,16 +14,26 @@ function hexToRGB(hex: string, alpha: number) {
   }
 }
 
-function getLS(key: string) {
+export function debounce<T extends (...args: any[]) => void>(func: T, delay: number) {
+  let timeoutId: ReturnType<typeof setTimeout>;
+  return (...args: Parameters<T>) => {
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+    }
+    timeoutId = setTimeout(() => {
+      func(...args);
+    }, delay);
+  };
+}
+
+export function getLS(key: string) {
   return window.localStorage.getItem(key);
 }
 
-function setLS(key: string, value: string) {
+export function setLS(key: string, value: string) {
   window.localStorage.setItem(key, value);
 }
 
-function deleteLS(key: string) {
+export function deleteLS(key: string) {
   window.localStorage.removeItem(key);
 }
-
-export { hexToRGB, getLS, setLS, deleteLS };
