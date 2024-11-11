@@ -112,7 +112,14 @@ function Profile() {
           <Skeleton />
         ) : isEmpty ? (
           <div className='bg-bg-secondary-light dark:bg-bg-secondary-dark rounded-[12px]'>
-            <EmptyPlaceholder description={t('profile.empty')} isLinkVisivle={isProfilePath} />
+            <EmptyPlaceholder
+              description={
+                isProfilePath
+                  ? t('profile.empty_gifts_in_profile')
+                  : t('profile.empty_gifts_in_leaderboard')
+              }
+              isLinkVisivle={isProfilePath}
+            />
           </div>
         ) : (
           <div className='grid grid-cols-3 gap-2'>
