@@ -45,8 +45,9 @@ function UserItem({ user, position, isLast, isMyProfile, containerRef }: UserIte
   return (
     <Link
       ref={stickyRef}
-      className={`w-[100%] bg-bg-primary-light dark:bg-bg-primary-dark flex items-center gap-3 px-4 border-separator-light dark:border-separator-dark  ${isMyProfile ? 'sticky z-0 bottom-0 left-0 right-0' : ''} ${isStickyActive ? 'border-t-[0.5px]' : ''}`}
-      to={`${user._id}`}
+      className={`w-[100%] bg-bg-primary-light dark:bg-bg-primary-dark flex items-center gap-3 px-4 border-separator-light dark:border-separator-dark  
+        ${isMyProfile ? 'sticky z-0 bottom-0 left-0 right-0' : ''} ${isStickyActive ? 'border-t-[0.5px]' : ''}`}
+      to={isMyProfile ? '/profile' : `${user._id}`}
     >
       <Avatar
         src={user.avatar}
